@@ -39,7 +39,12 @@
           <a class="nav-link" href="/mission/Mon-voyage-79">Mission</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin">Admin</a>
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+
+        <!-- Rendre le bouton visible si la personne est connectée -->
+        <li class="nav-item">
+          <a class="nav-link" href="/admin" style="display:none">Admin</a>
         </li>
       </ul>
     </div>
