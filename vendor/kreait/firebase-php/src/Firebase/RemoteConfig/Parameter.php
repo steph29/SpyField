@@ -24,9 +24,6 @@ class Parameter implements \JsonSerializable
     {
     }
 
-    /**
-     * @param DefaultValue|string|mixed $defaultValue
-     */
     public static function named(string $name, $defaultValue = null): self
     {
         if ($defaultValue === null) {
@@ -49,11 +46,6 @@ class Parameter implements \JsonSerializable
         return $this->name;
     }
 
-    public function description(): string
-    {
-        return $this->description;
-    }
-
     public function withDescription(string $description): self
     {
         $parameter = clone $this;
@@ -62,9 +54,6 @@ class Parameter implements \JsonSerializable
         return $parameter;
     }
 
-    /**
-     * @param DefaultValue|string $defaultValue
-     */
     public function withDefaultValue($defaultValue): self
     {
         $defaultValue = $defaultValue instanceof DefaultValue ? $defaultValue : DefaultValue::with($defaultValue);
@@ -96,12 +85,6 @@ class Parameter implements \JsonSerializable
         return $this->conditionalValues;
     }
 
-    /**
-     * @deprecated 5.10.0
-     * @codeCoverageIgnore
-     *
-     * @param array<string, mixed> $data
-     */
     public static function fromArray(array $data): self
     {
         \reset($data);
@@ -122,10 +105,7 @@ class Parameter implements \JsonSerializable
         return $parameter;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    public function jsonSerialize(): array
+    public function jsonSerialize()
     {
         $conditionalValues = [];
         foreach ($this->conditionalValues() as $conditionalValue) {

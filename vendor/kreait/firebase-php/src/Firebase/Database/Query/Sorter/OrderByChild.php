@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Database\Query\Sorter;
 
+use function JmesPath\search;
 use Kreait\Firebase\Database\Query\ModifierTrait;
 use Kreait\Firebase\Database\Query\Sorter;
 use Psr\Http\Message\UriInterface;
-use function JmesPath\search;
 
 final class OrderByChild implements Sorter
 {
     use ModifierTrait;
 
-    /** @var string */
     private $childKey;
 
     public function __construct(string $childKey)

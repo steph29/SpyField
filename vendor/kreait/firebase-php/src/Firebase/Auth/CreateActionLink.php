@@ -15,23 +15,19 @@ final class CreateActionLink
     /** @var Email */
     private $email;
 
-    /** @var ActionCodeSettings|null */
+    /** @var ActionCodeSettings */
     private $settings;
-
-    /** @var string|null */
-    private $tenantId;
 
     private function __construct()
     {
     }
 
-    public static function new(string $type, Email $email, ActionCodeSettings $settings, ?string $tenantId = null): self
+    public static function new(string $type, Email $email, ActionCodeSettings $settings): self
     {
         $instance = new self();
         $instance->type = $type;
         $instance->email = $email;
         $instance->settings = $settings;
-        $instance->tenantId = $tenantId;
 
         return $instance;
     }
@@ -49,10 +45,5 @@ final class CreateActionLink
     public function settings(): ActionCodeSettings
     {
         return $this->settings ?? ValidatedActionCodeSettings::empty();
-    }
-
-    public function tenantId(): ?string
-    {
-        return $this->tenantId;
     }
 }

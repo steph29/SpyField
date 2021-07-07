@@ -19,12 +19,12 @@ class JSON
      * @see \GuzzleHttp\json_encode()
      *
      * @param mixed $value   The value being encoded
-     * @param int|null $options JSON encode option bitmask
-     * @param int|null $depth   Set the maximum depth. Must be greater than zero
+     * @param int $options JSON encode option bitmask
+     * @param int $depth   Set the maximum depth. Must be greater than zero
      *
      * @throws InvalidArgumentException if the JSON cannot be encoded
      */
-    public static function encode($value, ?int $options = null, ?int $depth = null): string
+    public static function encode($value, int $options = null, int $depth = null): string
     {
         $options = $options ?? 0;
         $depth = $depth ?? 512;
@@ -32,8 +32,7 @@ class JSON
         $json = \json_encode($value, $options, $depth);
         if (\json_last_error() !== \JSON_ERROR_NONE) {
             throw new InvalidArgumentException(
-                'json_encode error: '.\json_last_error_msg()
-            );
+                'json_encode error: '.\json_last_error_msg());
         }
 
         return (string) $json;
@@ -49,9 +48,9 @@ class JSON
      * @see \GuzzleHttp\json_encode()
      *
      * @param string $json JSON data to parse
-     * @param bool|null $assoc  When true, returned objects will be converted into associative arrays
-     * @param int|null $depth User specified recursion depth
-     * @param int|null $options Bitmask of JSON decode options
+     * @param bool $assoc  When true, returned objects will be converted into associative arrays
+     * @param int $depth User specified recursion depth
+     * @param int $options Bitmask of JSON decode options
      *
      * @throws \InvalidArgumentException if the JSON cannot be decoded
      *
@@ -62,8 +61,7 @@ class JSON
         $data = \json_decode($json, $assoc ?? false, $depth ?? 512, $options ?? 0);
         if (\json_last_error() !== \JSON_ERROR_NONE) {
             throw new InvalidArgumentException(
-                'json_decode error: '.\json_last_error_msg()
-            );
+                'json_decode error: '.\json_last_error_msg());
         }
 
         return $data;

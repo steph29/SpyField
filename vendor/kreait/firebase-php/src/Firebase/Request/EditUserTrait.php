@@ -44,12 +44,13 @@ trait EditUserTrait
     protected $clearTextPassword;
 
     /**
-     * @param self $request
-     * @param array<string, mixed> $properties
+     * @param static $request
      *
      * @throws InvalidArgumentException when invalid properties have been provided
+     *
+     * @return static
      */
-    protected static function withEditableProperties($request, array $properties): self
+    protected static function withEditableProperties($request, array $properties)
     {
         foreach ($properties as $key => $value) {
             switch (\mb_strtolower((string) \preg_replace('/[^a-z]/i', '', (string) $key))) {
@@ -117,7 +118,7 @@ trait EditUserTrait
      *
      * @return static
      */
-    public function withUid($uid): self
+    public function withUid($uid)
     {
         $request = clone $this;
         $request->uid = $uid instanceof Uid ? $uid : new Uid((string) $uid);
@@ -130,7 +131,7 @@ trait EditUserTrait
      *
      * @return static
      */
-    public function withEmail($email): self
+    public function withEmail($email)
     {
         $request = clone $this;
         $request->email = $email instanceof Email ? $email : new Email($email);
@@ -140,8 +141,10 @@ trait EditUserTrait
 
     /**
      * @param Email|string $email
+     *
+     * @return static
      */
-    public function withVerifiedEmail($email): self
+    public function withVerifiedEmail($email)
     {
         $request = clone $this;
         $request->email = $email instanceof Email ? $email : new Email($email);
@@ -155,7 +158,7 @@ trait EditUserTrait
      *
      * @return static
      */
-    public function withUnverifiedEmail($email): self
+    public function withUnverifiedEmail($email)
     {
         $request = clone $this;
         $request->email = $email instanceof Email ? $email : new Email($email);
@@ -167,7 +170,7 @@ trait EditUserTrait
     /**
      * @return static
      */
-    public function withDisplayName(string $displayName): self
+    public function withDisplayName(string $displayName)
     {
         $request = clone $this;
         $request->displayName = $displayName;
@@ -177,8 +180,10 @@ trait EditUserTrait
 
     /**
      * @param PhoneNumber|string|null $phoneNumber
+     *
+     * @return static
      */
-    public function withPhoneNumber($phoneNumber): self
+    public function withPhoneNumber($phoneNumber)
     {
         $phoneNumber = $phoneNumber !== null
             ? new PhoneNumber((string) $phoneNumber)
@@ -192,8 +197,10 @@ trait EditUserTrait
 
     /**
      * @param Url|string $url
+     *
+     * @return static
      */
-    public function withPhotoUrl($url): self
+    public function withPhotoUrl($url)
     {
         $request = clone $this;
         $request->photoUrl = $url instanceof Url ? $url : Url::fromValue($url);
@@ -204,7 +211,7 @@ trait EditUserTrait
     /**
      * @return static
      */
-    public function markAsDisabled(): self
+    public function markAsDisabled()
     {
         $request = clone $this;
         $request->markAsEnabled = null;
@@ -216,7 +223,7 @@ trait EditUserTrait
     /**
      * @return static
      */
-    public function markAsEnabled(): self
+    public function markAsEnabled()
     {
         $request = clone $this;
         $request->markAsDisabled = null;
@@ -228,7 +235,7 @@ trait EditUserTrait
     /**
      * @return static
      */
-    public function markEmailAsVerified(): self
+    public function markEmailAsVerified()
     {
         $request = clone $this;
         $request->emailIsVerified = true;
@@ -239,7 +246,7 @@ trait EditUserTrait
     /**
      * @return static
      */
-    public function markEmailAsUnverified(): self
+    public function markEmailAsUnverified()
     {
         $request = clone $this;
         $request->emailIsVerified = false;
@@ -252,7 +259,7 @@ trait EditUserTrait
      *
      * @return static
      */
-    public function withClearTextPassword($clearTextPassword): self
+    public function withClearTextPassword($clearTextPassword)
     {
         $request = clone $this;
         $request->clearTextPassword = $clearTextPassword instanceof ClearTextPassword
@@ -262,9 +269,6 @@ trait EditUserTrait
         return $request;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
     public function prepareJsonSerialize(): array
     {
         $disableUser = null;
@@ -274,7 +278,7 @@ trait EditUserTrait
             $disableUser = false;
         }
 
-        return \array_filter([
+        $data = \array_filter([
             'localId' => $this->uid,
             'disableUser' => $disableUser,
             'displayName' => $this->displayName,
@@ -286,6 +290,8 @@ trait EditUserTrait
         ], static function ($value) {
             return $value !== null;
         });
+
+        return $data;
     }
 
     public function hasUid(): bool

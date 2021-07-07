@@ -8,16 +8,13 @@ use Kreait\Firebase\Exception\Messaging\InvalidMessage;
 use Kreait\Firebase\Exception\Messaging\NotFound;
 use Throwable;
 
-final class SendReport
+class SendReport
 {
     /** @var MessageTarget */
     private $target;
 
-    /** @var array<mixed>|null */
+    /** @var array|null */
     private $result;
-
-    /** @var Message|null */
-    private $message;
 
     /** @var Throwable|null */
     private $error;
@@ -26,25 +23,20 @@ final class SendReport
     {
     }
 
-    /**
-     * @param array<mixed> $response
-     */
-    public static function success(MessageTarget $target, array $response, ?Message $message = null): self
+    public static function success(MessageTarget $target, $response): self
     {
         $report = new self();
         $report->target = $target;
         $report->result = $response;
-        $report->message = $message;
 
         return $report;
     }
 
-    public static function failure(MessageTarget $target, Throwable $error, ?Message $message = null): self
+    public static function failure(MessageTarget $target, Throwable $error): self
     {
         $report = new self();
         $report->target = $target;
         $report->error = $error;
-        $report->message = $message;
 
         return $report;
     }
@@ -82,20 +74,18 @@ final class SendReport
     }
 
     /**
-     * @return array<mixed>|null
+     * @return array|null
      */
-    public function result(): ?array
+    public function result()
     {
         return $this->result;
     }
 
-    public function error(): ?Throwable
+    /**
+     * @return Throwable|null
+     */
+    public function error()
     {
         return $this->error;
-    }
-
-    public function message(): ?Message
-    {
-        return $this->message;
     }
 }
