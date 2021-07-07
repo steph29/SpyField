@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit51f197a7858e1fc8ce0c2a38507b3834
 {
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'ScssPhp\\ScssPhp\\' => 16,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'ScssPhp\\ScssPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/scssphp/scssphp/src',
+        ),
+    );
+
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -14,6 +28,8 @@ class ComposerStaticInit51f197a7858e1fc8ce0c2a38507b3834
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit51f197a7858e1fc8ce0c2a38507b3834::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit51f197a7858e1fc8ce0c2a38507b3834::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit51f197a7858e1fc8ce0c2a38507b3834::$classMap;
 
         }, null, ClassLoader::class);
