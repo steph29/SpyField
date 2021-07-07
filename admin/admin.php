@@ -6,10 +6,8 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
 session_start();
 require '../config/dbconfig.php';
 
-
 if(isset($_POST['submit'])){
     $name = $_POST['login'];
-
     $data = [ 
         'name' => $name,
     ];
@@ -29,9 +27,7 @@ if(isset($_POST['submit'])){
         console.log($_SESSION['status']);
     }
 }
-
 ?>
-
 
 <div class="container">
     <div class="row">

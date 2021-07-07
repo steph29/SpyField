@@ -9,12 +9,9 @@ use GuzzleHttp\ClientInterface;
 use InvalidArgumentException;
 use Kreait\Firebase\Exception\Auth\AuthError;
 use Kreait\Firebase\Exception\AuthApiExceptionConverter;
-use Kreait\Firebase\Exception\AuthException;
-use Kreait\Firebase\Exception\FirebaseException;
-use Kreait\Firebase\Util\DT;
 use Kreait\Firebase\Util\JSON;
-use Kreait\Firebase\Value\Uid;
-use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Token;
 use Throwable;
 
@@ -26,59 +23,38 @@ class CustomTokenViaGoogleIam implements Generator
     /** @var ClientInterface */
     private $client;
 
-    /** @var Configuration */
-    private $config;
-
-    /** @var TenantId|null */
-    private $tenantId;
-
-    public function __construct(string $clientEmail, ClientInterface $client, ?TenantId $tenantId = null)
+    public function __construct(string $clientEmail, ClientInterface $client)
     {
         $this->clientEmail = $clientEmail;
         $this->client = $client;
-        $this->tenantId = $tenantId;
-
-        $this->config = Configuration::forUnsecuredSigner();
     }
 
-    /**
-     * @param Uid|string$uid
-     * @param array<string, mixed> $claims
-     *
-     * @throws AuthException
-     * @throws FirebaseException
-     */
-    public function createCustomToken($uid, array $claims = [], ?\DateTimeInterface $expiresAt = null): Token
+    public function createCustomToken($uid, array $claims = [], \DateTimeInterface $expiresAt = null): Token
     {
-        $now = new \DateTimeImmutable();
-        $expiresAt = ($expiresAt !== null)
-            ? DT::toUTCDateTimeImmutable($expiresAt)
-            : $now->add(new \DateInterval('PT1H'));
+        $now = \time();
+        $expiration = $expiresAt ? $expiresAt->getTimestamp() : $now + (60 * 60);
 
-        $builder = $this->config->builder()
+        $builder = (new Builder())
+            ->withHeader('alg', 'RS256')
             ->withClaim('uid', (string) $uid)
             ->issuedBy($this->clientEmail)
-            ->permittedFor('https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit')
             ->relatedTo($this->clientEmail)
             ->issuedAt($now)
-            ->expiresAt($expiresAt);
-
-        if ($this->tenantId) {
-            $builder->withClaim('tenantId', $this->tenantId->toString());
-        }
+            ->expiresAt($expiration)
+            ->permittedFor('https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit');
 
         if (!empty($claims)) {
-            $builder->withClaim('claims', $claims);
+            $builder = $builder->withClaim('claims', $claims);
         }
 
-        $token = $builder->getToken($this->config->signer(), $this->config->signingKey());
+        $token = $builder->getToken();
 
         $url = 'https://iam.googleapis.com/v1/projects/-/serviceAccounts/'.$this->clientEmail.':signBlob';
 
         try {
             $response = $this->client->request('POST', $url, [
                 'json' => [
-                    'bytesToSign' => \base64_encode($token->payload()),
+                    'bytesToSign' => \base64_encode($token->getPayload()),
                 ],
             ]);
         } catch (Throwable $e) {
@@ -89,7 +65,7 @@ class CustomTokenViaGoogleIam implements Generator
 
         if ($base64EncodedSignature = $result['signature'] ?? null) {
             try {
-                return $this->config->parser()->parse($token->payload().'.'.$base64EncodedSignature);
+                return (new Parser())->parse(((string) $token).$base64EncodedSignature);
             } catch (InvalidArgumentException $e) {
                 throw new AuthError('The custom token API returned an unexpected value: '.$e->getMessage(), $e->getCode(), $e);
             }

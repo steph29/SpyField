@@ -6,7 +6,7 @@ namespace Kreait\Firebase;
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-final class Firestore implements Contract\Firestore
+final class Firestore
 {
     /** @var FirestoreClient */
     private $client;

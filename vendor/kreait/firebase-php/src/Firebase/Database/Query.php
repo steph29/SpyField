@@ -6,7 +6,6 @@ namespace Kreait\Firebase\Database;
 
 use Kreait\Firebase\Database\Query\Filter;
 use Kreait\Firebase\Database\Query\Sorter;
-use Kreait\Firebase\Exception\Database\DatabaseNotFound;
 use Kreait\Firebase\Exception\Database\UnsupportedQuery;
 use Kreait\Firebase\Exception\DatabaseException;
 use Psr\Http\Message\UriInterface;
@@ -67,8 +66,6 @@ class Query
     {
         try {
             $value = $this->apiClient->get($this->getUri());
-        } catch (DatabaseNotFound $e) {
-            throw $e;
         } catch (DatabaseException $e) {
             throw new UnsupportedQuery($this, $e->getMessage(), $e->getCode(), $e->getPrevious());
         }
@@ -114,20 +111,6 @@ class Query
     }
 
     /**
-     * Creates a Query with the specified ending point (exclusive).
-     *
-     * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#endbefore
-     *
-     * @param int|float|string|bool $value
-     *
-     * @return Query
-     */
-    public function endBefore($value): self
-    {
-        return $this->withAddedFilter(new Filter\EndBefore($value));
-    }
-
-    /**
      * Creates a Query which includes children which match the specified value.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#equalTo
@@ -142,7 +125,9 @@ class Query
     }
 
     /**
-     * Creates a Query with the specified starting point (inclusive).
+     * Creates a Query with the specified starting point.
+     *
+     * The starting point is inclusive, so children with exactly the specified value will be included in the query.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#startAt
      *
@@ -153,20 +138,6 @@ class Query
     public function startAt($value): self
     {
         return $this->withAddedFilter(new Filter\StartAt($value));
-    }
-
-    /**
-     * Creates a Query with the specified starting point (exclusive).
-     *
-     * @see https://firebase.google.com/docs/reference/js/firebase.database.Query#startafter
-     *
-     * @param int|float|string|bool $value
-     *
-     * @return Query
-     */
-    public function startAfter($value): self
-    {
-        return $this->withAddedFilter(new Filter\StartAfter($value));
     }
 
     /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Database;
 
-use Kreait\Firebase\Exception\InvalidArgumentException;
 use function JmesPath\search;
+use Kreait\Firebase\Exception\InvalidArgumentException;
 
 /**
  * A Snapshot contains data from a database location.
@@ -49,8 +49,10 @@ class Snapshot
      * will return null.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#key
+     *
+     * @return string|null
      */
-    public function getKey(): ?string
+    public function getKey()
     {
         return $this->reference->getKey();
     }

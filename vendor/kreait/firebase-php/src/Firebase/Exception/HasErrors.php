@@ -9,11 +9,11 @@ namespace Kreait\Firebase\Exception;
  */
 trait HasErrors
 {
-    /** @var array<mixed> */
+    /** @var string[] */
     protected $errors = [];
 
     /**
-     * @return array<mixed>
+     * @return string[]
      */
     public function errors(): array
     {

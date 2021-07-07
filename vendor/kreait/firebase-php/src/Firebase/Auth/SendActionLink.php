@@ -17,7 +17,7 @@ final class SendActionLink
     /** @var string|null */
     private $idTokenString;
 
-    public function __construct(CreateActionLink $action, ?string $locale = null)
+    public function __construct(CreateActionLink $action, string $locale = null)
     {
         $this->action = $action;
         $this->locale = $locale;
@@ -38,12 +38,10 @@ final class SendActionLink
         return $this->action->settings();
     }
 
-    public function tenantId(): ?string
-    {
-        return $this->action->tenantId();
-    }
-
-    public function locale(): ?string
+    /**
+     * @return string|null
+     */
+    public function locale()
     {
         return $this->locale;
     }
@@ -74,8 +72,10 @@ final class SendActionLink
      * Currently seems only to be the case on VERIFY_EMAIL actions.
      *
      * @see https://github.com/firebase/firebase-js-sdk/issues/1958
+     *
+     * @return string|null
      */
-    public function idTokenString(): ?string
+    public function idTokenString()
     {
         return $this->idTokenString;
     }

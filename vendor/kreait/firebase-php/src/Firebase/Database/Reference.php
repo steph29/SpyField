@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Kreait\Firebase\Database;
 
 use Kreait\Firebase\Database\Reference\Validator;
-use Kreait\Firebase\Exception\DatabaseException;
+use Kreait\Firebase\Exception\ApiException;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Exception\OutOfRangeException;
 use Psr\Http\Message\UriInterface;
@@ -32,7 +32,7 @@ class Reference
      *
      * @throws InvalidArgumentException if the reference URI is invalid
      */
-    public function __construct(UriInterface $uri, ApiClient $apiClient, ?Validator $validator = null)
+    public function __construct(UriInterface $uri, ApiClient $apiClient, Validator $validator = null)
     {
         $this->validator = $validator ?? new Validator();
         $this->validator->validateUri($uri);
@@ -49,8 +49,10 @@ class Reference
      * The key of the root Reference is null.
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Reference#key
+     *
+     * @return string|null
      */
-    public function getKey(): ?string
+    public function getKey()
     {
         $key = \basename($this->getPath());
 
@@ -171,11 +173,11 @@ class Reference
     }
 
     /**
-     * Creates a Query with the specified starting point (inclusive).
+     * Creates a Query with the specified starting point.
      *
      * @see Query::startAt()
      *
-     * @param int|float|string|bool $value
+     * @param int|float|string|bool $value $value
      */
     public function startAt($value): Query
     {
@@ -183,19 +185,7 @@ class Reference
     }
 
     /**
-     * Creates a Query with the specified starting point (exclusive).
-     *
-     * @see Query::startAfter()
-     *
-     * @param int|float|string|bool $value
-     */
-    public function startAfter($value): Query
-    {
-        return $this->query()->startAfter($value);
-    }
-
-    /**
-     * Creates a Query with the specified ending point (inclusive).
+     * Creates a Query with the specified ending point.
      *
      * @see Query::endAt()
      *
@@ -204,18 +194,6 @@ class Reference
     public function endAt($value): Query
     {
         return $this->query()->endAt($value);
-    }
-
-    /**
-     * Creates a Query with the specified ending point (exclusive).
-     *
-     * @see Query::endBefore()
-     *
-     * @param int|float|string|bool $value
-     */
-    public function endBefore($value): Query
-    {
-        return $this->query()->endBefore($value);
     }
 
     /**
@@ -244,16 +222,14 @@ class Reference
      * Returns the keys of a reference's children.
      *
      * @throws OutOfRangeException if the reference has no children with keys
-     * @throws DatabaseException if the API reported an error
-     *
-     * @return string[]
+     * @throws ApiException if the API reported an error
      */
     public function getChildKeys(): array
     {
         $snapshot = $this->shallow()->getSnapshot();
 
         if (\is_array($value = $snapshot->getValue())) {
-            return \array_map('strval', \array_keys($value));
+            return \array_keys($value);
         }
 
         throw new OutOfRangeException(\sprintf('%s has no children with keys', $this));
@@ -262,7 +238,7 @@ class Reference
     /**
      * Convenience method for {@see getSnapshot()}->getValue().
      *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      *
      * @return mixed
      */
@@ -281,7 +257,7 @@ class Reference
      *
      * @param mixed $value
      *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      *
      * @return Reference
      */
@@ -299,7 +275,7 @@ class Reference
     /**
      * Returns a data snapshot of the current location.
      *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      */
     public function getSnapshot(): Snapshot
     {
@@ -325,7 +301,7 @@ class Reference
      *
      * @param mixed $value
      *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      *
      * @return Reference A new reference for the added child
      */
@@ -346,7 +322,7 @@ class Reference
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Reference#remove
      *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      *
      * @return Reference A new instance for the now empty Reference
      */
@@ -371,9 +347,7 @@ class Reference
      *
      * @see https://firebase.google.com/docs/reference/js/firebase.database.Reference#update
      *
-     * @param array<mixed> $values
-     *
-     * @throws DatabaseException if the API reported an error
+     * @throws ApiException if the API reported an error
      *
      * @return Reference
      */
