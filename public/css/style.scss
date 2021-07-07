@@ -27,7 +27,6 @@ body {
 }
 h1,
 h2,
-label,
 input,
 .col-form-label,
 .btn {
@@ -93,7 +92,13 @@ input {
   background-color: #1f2f44;
   border-color: #1f2f44;
 }
-
+label::placeholder {
+  font-family: "Special Elite", cursive;
+  color: $LightGrey;
+  &::placeholder {
+    opacity: 0.5;
+  }
+}
 .form-control {
   border-radius: 16px;
 }
@@ -108,4 +113,5 @@ input {
 .col-form-label {
   text-align: left;
 }
+
 /*# sourceMappingURL=login.component.css.map */

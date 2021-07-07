@@ -44,7 +44,7 @@
 
         <!-- Rendre le bouton visible si la personne est connectée -->
         <li class="nav-item">
-          <a class="nav-link" href="/admin" style="display:none">Admin</a>
+          <a class="nav-link" href="/admin">Admin</a>
         </li>
       </ul>
     </div>

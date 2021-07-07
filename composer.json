@@ -1,6 +1,7 @@
 {
     "require": {
         "altorouter/altorouter": "^2.0",
-        "scssphp/scssphp": "^1.6"
+        "scssphp/scssphp": "^1.6",
+        "kreait/firebase-php": "^5.19"
     }
 }
