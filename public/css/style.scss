@@ -1,0 +1,49 @@
+$redPrimary: #ad1703;
+$greenSecondary: #09ad5d;
+$VeryDarkGrey: #151f2d;
+$DarkGrey: #1f2f44;
+$LightDarkGrey: #1f2f44;
+$Red: #862e2a;
+$Green: #2b6714;
+$LightGrey: #8e8c8c;
+
+html,
+.container-fluid,
+.container,
+.navbar,
+footer,
+body {
+  background-color: $VeryDarkGrey !important;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+h1,
+h2,
+label,
+input,
+.col-form-label,
+.btn {
+  font-family: "Special Elite", cursive;
+  color: $LightGrey;
+}
+.nav-link {
+  color: $LightGrey !important;
+}
+h3,
+h4,
+h5 {
+  font-family: "Advent Pro", sans-serif;
+  color: $Red;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+}
