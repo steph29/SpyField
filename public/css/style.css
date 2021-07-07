@@ -43,4 +43,67 @@ footer {
   position: absolute;
   bottom: 0;
 }
+
+.copyright {
+  font-size: 0.7rem;
+  color: #2b6714;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.copyright p {
+  margin: 0;
+}
+
+* {
+  text-decoration: none;
+}
+
+form {
+  margin-top: 10%;
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: 100;
+}
+
+button {
+  background-color: #1f2f44;
+  border-color: #1f2f44;
+}
+
+.btn {
+  border-radius: 16px;
+  width: 192px;
+}
+
+.btn-outline-danger {
+  color: #862e2a;
+}
+
+.btn-outline-success {
+  color: #2b6714;
+}
+
+input {
+  margin: auto auto;
+  background-color: #1f2f44;
+  border-color: #1f2f44;
+}
+
+.form-control {
+  border-radius: 16px;
+}
+
+.form-group {
+  display: -ms-grid;
+  display: grid;
+  margin: auto auto;
+  width: 60%;
+}
+
+.col-form-label {
+  text-align: left;
+}
 /*# sourceMappingURL=style.css.map */
