@@ -21,7 +21,10 @@ if(is_array($match)) {
     require '../elements/layout.php';
 
 } else {
-    echo '404';
+    ob_start();
+    require '../errors/404.php';
+    $pageContent = ob_get_clean();
+    require '../elements/layout.php';
 }
 
 ?>
