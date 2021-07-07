@@ -20,7 +20,6 @@ body {
 
 h1,
 h2,
-label,
 input,
 .col-form-label,
 .btn {
@@ -90,6 +89,42 @@ input {
   margin: auto auto;
   background-color: #1f2f44;
   border-color: #1f2f44;
+}
+
+label::-webkit-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label:-ms-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label::-ms-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label::placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label::-webkit-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
+label:-ms-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
+label::-ms-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
+label::placeholder::placeholder {
+  opacity: 0.5;
 }
 
 .form-control {

@@ -1,16 +1,17 @@
 <?php 
+session_start();
 $pageTitle = "Connectez-vous";
 $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 
 <h2 class="text-center">Connected place</h2>
 <section class="container-fluid text-center">
-      <form action= "#" method="POST">
+      <form action= "/admin" method="POST">
         <div class="form-group my-3">
           <label for="login" class="col-form-label">login </label>
           <input
             type="text"
             class="form-control"
-            id="login"
+            name="login"
             placeholder="James.Bond"
 
           />
@@ -21,12 +22,13 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
           <input
             type="password"
             class="form-control"
-            id="password"
+            name="password"
           />
         </div>
         <button
           type="submit"
           class="btn btn-outline-success m-4"
+          name="submit"
         >
           Connexion
         </button>
