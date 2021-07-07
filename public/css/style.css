@@ -1,0 +1,46 @@
+html,
+.container-fluid,
+.container,
+.navbar,
+footer,
+body {
+  background-color: #151f2d !important;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1,
+h2,
+label,
+input,
+.col-form-label,
+.btn {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+.nav-link {
+  color: #8e8c8c !important;
+}
+
+h3,
+h4,
+h5 {
+  font-family: "Advent Pro", sans-serif;
+  color: #862e2a;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+/*# sourceMappingURL=style.css.map */
