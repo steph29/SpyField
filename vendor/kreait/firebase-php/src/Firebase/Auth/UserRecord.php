@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Kreait\Firebase\Auth;
 
 use DateTimeImmutable;
+use Kreait\Firebase\Util\Deprecation;
 use Kreait\Firebase\Util\DT;
 use Kreait\Firebase\Util\JSON;
 
+/**
+ * @property array<string, mixed> $customAttributes Deprecated, use {@see UserRecord::$customClaims} instead
+ */
 class UserRecord implements \JsonSerializable
 {
     /** @var string */
@@ -43,8 +47,8 @@ class UserRecord implements \JsonSerializable
     /** @var string|null */
     public $passwordSalt;
 
-    /** @var array */
-    public $customAttributes;
+    /** @var array<string, mixed> */
+    public $customClaims;
 
     /** @var DateTimeImmutable|null */
     public $tokensValidAfterTime;
@@ -52,10 +56,9 @@ class UserRecord implements \JsonSerializable
     /** @var string|null */
     public $tenantId;
 
-    public function __construct()
-    {
-    }
-
+    /**
+     * @param array<string, mixed> $data
+     */
     public static function fromResponseData(array $data): self
     {
         $record = new self();
@@ -70,24 +73,32 @@ class UserRecord implements \JsonSerializable
         $record->providerData = self::userInfoFromResponseData($data);
         $record->passwordHash = $data['passwordHash'] ?? null;
         $record->passwordSalt = $data['salt'] ?? null;
-        $record->tenantId = $data['tenantId'] ?? null;
+        $record->tenantId = $data['tenantId'] ?? $data['tenant_id'] ?? null;
 
         if ($data['validSince'] ?? null) {
             $record->tokensValidAfterTime = DT::toUTCDateTimeImmutable($data['validSince']);
         }
 
-        if ($customAttributes = $data['customAttributes'] ?? '{}') {
-            $record->customAttributes = JSON::decode($customAttributes, true);
+        if ($customClaims = $data['customClaims'] ?? $data['customAttributes'] ?? '{}') {
+            $record->customClaims = JSON::decode($customClaims, true);
         }
 
         return $record;
     }
 
+    /**
+     * @param array<string, mixed> $data
+     */
     private static function userMetaDataFromResponseData(array $data): UserMetaData
     {
         return UserMetaData::fromResponseData($data);
     }
 
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<int, UserInfo>
+     */
     private static function userInfoFromResponseData(array $data): array
     {
         return \array_map(static function (array $userInfoData) {
@@ -96,14 +107,9 @@ class UserRecord implements \JsonSerializable
     }
 
     /**
-     * @deprecated 4.33
+     * @return array<string, mixed>
      */
-    public function toArray(): array
-    {
-        return \get_object_vars($this);
-    }
-
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = \get_object_vars($this);
 
@@ -112,5 +118,21 @@ class UserRecord implements \JsonSerializable
             : null;
 
         return $data;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        if (\mb_strtolower($name) === 'customattributes') {
+            Deprecation::trigger(__CLASS__.'::customAttributes', __CLASS__.'::customClaims');
+
+            return $this->customClaims;
+        }
+
+        return $this->{$name};
     }
 }

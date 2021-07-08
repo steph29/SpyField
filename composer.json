@@ -2,7 +2,7 @@
     "require": {
         "altorouter/altorouter": "^2.0",
         "scssphp/scssphp": "^1.6",
-        "kreait/firebase-php": "^4.17",
+        "kreait/firebase-php": "^5.19",
         "vlucas/phpdotenv": "^5.3"
     }
 }

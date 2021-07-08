@@ -1,16 +1,11 @@
 <?php 
-// data secure
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeload();
 
-// Connexion to the database
+require '../vendor/autoload.php';
+
 use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
 
-$factory = (new Factory)->withServiceAccount(__DIR__.'/spyfield-b2064-firebase-adminsdk-56zwj-7eb7df33b5.json');
-
-$database = $factory->createDatabase();
-
-
+$factory = (new Factory)->withServiceAccount('spyfield-b2064-firebase-adminsdk-56zwj-0cf183d972.json')
+->withDatabaseUri('https://spyfield-b2064-default-rtdb.europe-west1.firebasedatabase.app/');
+    $database = $factory->createDatabase();
 
 ?>

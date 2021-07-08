@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Auth;
 
-final class SignInWithIdpCredentials implements SignIn
+final class SignInWithIdpCredentials implements IsTenantAware, SignIn
 {
     /** @var string|null */
     private $accessToken;
@@ -15,8 +15,14 @@ final class SignInWithIdpCredentials implements SignIn
     /** @var string */
     private $provider;
 
+    /** @var string|null */
+    private $oauthTokenSecret;
+
     /** @var string */
     private $requestUri = 'http://localhost';
+
+    /** @var TenantId|null */
+    private $tenantId;
 
     private function __construct()
     {
@@ -27,6 +33,14 @@ final class SignInWithIdpCredentials implements SignIn
         $instance = new self();
         $instance->provider = $provider;
         $instance->accessToken = $accessToken;
+
+        return $instance;
+    }
+
+    public static function withAccessTokenAndOauthTokenSecret(string $provider, string $accessToken, string $oauthTokenSecret): self
+    {
+        $instance = self::withAccessToken($provider, $accessToken);
+        $instance->oauthTokenSecret = $oauthTokenSecret;
 
         return $instance;
     }
@@ -48,23 +62,30 @@ final class SignInWithIdpCredentials implements SignIn
         return $instance;
     }
 
+    public function withTenantId(TenantId $tenantId): self
+    {
+        $action = clone $this;
+        $action->tenantId = $tenantId;
+
+        return $action;
+    }
+
     public function provider(): string
     {
         return $this->provider;
     }
 
-    /**
-     * @return string|null
-     */
-    public function accessToken()
+    public function oauthTokenSecret(): ?string
+    {
+        return $this->oauthTokenSecret;
+    }
+
+    public function accessToken(): ?string
     {
         return $this->accessToken;
     }
 
-    /**
-     * @return string|null
-     */
-    public function idToken()
+    public function idToken(): ?string
     {
         return $this->idToken;
     }
@@ -72,5 +93,10 @@ final class SignInWithIdpCredentials implements SignIn
     public function requestUri(): string
     {
         return $this->requestUri;
+    }
+
+    public function tenantId(): ?TenantId
+    {
+        return $this->tenantId;
     }
 }

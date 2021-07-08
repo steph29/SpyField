@@ -10,17 +10,11 @@ use Kreait\Firebase\Database\Reference;
 use Kreait\Firebase\Database\RuleSet;
 use Kreait\Firebase\Database\Transaction;
 use Kreait\Firebase\Exception\InvalidArgumentException;
-use Kreait\Firebase\Exception\OutOfRangeException;
 use Psr\Http\Message\UriInterface;
 
-/**
- * The Firebase Realtime Database.
- *
- * @see https://firebase.google.com/docs/reference/js/firebase.database.Database
- */
-class Database
+class Database implements Contract\Database
 {
-    const SERVER_TIMESTAMP = ['.sv' => 'timestamp'];
+    public const SERVER_TIMESTAMP = ['.sv' => 'timestamp'];
 
     /** @var ApiClient */
     private $client;
@@ -37,14 +31,7 @@ class Database
         $this->client = $client;
     }
 
-    /**
-     * Returns a Reference to the root or the specified path.
-     *
-     * @see https://firebase.google.com/docs/reference/js/firebase.database.Database#ref
-     *
-     * @throws InvalidArgumentException
-     */
-    public function getReference(string $path = null): Reference
+    public function getReference(?string $path = null): Reference
     {
         if ($path === null || \trim($path) === '') {
             $path = '/';
@@ -57,16 +44,6 @@ class Database
         }
     }
 
-    /**
-     * Returns a reference to the root or the path specified in url.
-     *
-     * @see https://firebase.google.com/docs/reference/js/firebase.database.Database#refFromURL
-     *
-     * @param string|UriInterface $uri
-     *
-     * @throws InvalidArgumentException If the URL is invalid
-     * @throws OutOfRangeException If the URL is not in the same domain as the current database
-     */
     public function getReferenceFromUrl($uri): Reference
     {
         $uri = $uri instanceof UriInterface ? $uri : new Uri($uri);
@@ -74,18 +51,14 @@ class Database
         if (($givenHost = $uri->getHost()) !== ($dbHost = $this->uri->getHost())) {
             throw new InvalidArgumentException(\sprintf(
                 'The given URI\'s host "%s" is not covered by the database for the host "%s".',
-                $givenHost, $dbHost
+                $givenHost,
+                $dbHost
             ));
         }
 
         return $this->getReference($uri->getPath());
     }
 
-    /**
-     * Retrieve Firebase Database Rules.
-     *
-     * @see https://firebase.google.com/docs/database/rest/app-management#retrieving-firebase-realtime-database-rules
-     */
     public function getRuleSet(): RuleSet
     {
         $rules = $this->client->get($this->uri->withPath('.settings/rules'));
@@ -93,28 +66,7 @@ class Database
         return RuleSet::fromArray($rules);
     }
 
-    /**
-     * Retrieve Firebase Database Rules.
-     *
-     * @deprecated 4.32.0 Use \Kreait\Firebase\Database::getRuleSet() instead
-     * @see getRuleSet()
-     */
-    public function getRules(): RuleSet
-    {
-        \trigger_error(
-            __METHOD__.' is deprecated. Use \Kreait\Firebase\Database::getRuleSet() instead.',
-            \E_USER_DEPRECATED
-        );
-
-        return $this->getRuleSet();
-    }
-
-    /**
-     * Update Firebase Database Rules.
-     *
-     * @see https://firebase.google.com/docs/database/rest/app-management#updating-firebase-realtime-database-rules
-     */
-    public function updateRules(RuleSet $ruleSet)
+    public function updateRules(RuleSet $ruleSet): void
     {
         $this->client->updateRules($this->uri->withPath('.settings/rules'), $ruleSet);
     }

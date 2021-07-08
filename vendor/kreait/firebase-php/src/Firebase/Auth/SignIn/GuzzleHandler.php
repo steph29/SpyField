@@ -6,10 +6,10 @@ namespace Kreait\Firebase\Auth\SignIn;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
-use function GuzzleHttp\Psr7\build_query;
+use GuzzleHttp\Psr7\Query;
 use GuzzleHttp\Psr7\Request;
-use function GuzzleHttp\Psr7\stream_for;
-use function GuzzleHttp\Psr7\uri_for;
+use GuzzleHttp\Psr7\Utils;
+use Kreait\Firebase\Auth\IsTenantAware;
 use Kreait\Firebase\Auth\SignIn;
 use Kreait\Firebase\Auth\SignInAnonymously;
 use Kreait\Firebase\Auth\SignInResult;
@@ -26,10 +26,12 @@ use Psr\Http\Message\RequestInterface;
  */
 final class GuzzleHandler implements Handler
 {
+    /** @var array<string, mixed> */
     private static $defaultBody = [
         'returnSecureToken' => true,
     ];
 
+    /** @var array<string, mixed> */
     private static $defaultHeaders = [
         'Content-Type' => 'application/json; charset=UTF-8',
     ];
@@ -69,7 +71,7 @@ final class GuzzleHandler implements Handler
     {
         switch (true) {
             case $action instanceof SignInAnonymously:
-                return $this->anonymous();
+                return $this->anonymous($action);
             case $action instanceof SignInWithCustomToken:
                 return $this->customToken($action);
             case $action instanceof SignInWithEmailAndPassword:
@@ -85,11 +87,12 @@ final class GuzzleHandler implements Handler
         }
     }
 
-    private function anonymous(): Request
+    private function anonymous(SignInAnonymously $action): Request
     {
-        $uri = uri_for('https://identitytoolkit.googleapis.com/v1/accounts:signUp');
+        $uri = Utils::uriFor('https://identitytoolkit.googleapis.com/v1/accounts:signUp');
 
-        $body = stream_for(\json_encode(self::$defaultBody));
+        $body = Utils::streamFor(\json_encode(self::prepareBody($action)));
+
         $headers = self::$defaultHeaders;
 
         return new Request('POST', $uri, $headers, $body);
@@ -97,9 +100,9 @@ final class GuzzleHandler implements Handler
 
     private function customToken(SignInWithCustomToken $action): Request
     {
-        $uri = uri_for('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken');
+        $uri = Utils::uriFor('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken');
 
-        $body = stream_for(\json_encode(\array_merge(self::$defaultBody, [
+        $body = Utils::streamFor(\json_encode(\array_merge(self::prepareBody($action), [
             'token' => $action->customToken(),
         ])));
 
@@ -110,9 +113,9 @@ final class GuzzleHandler implements Handler
 
     private function emailAndPassword(SignInWithEmailAndPassword $action): Request
     {
-        $uri = uri_for('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword');
+        $uri = Utils::uriFor('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword');
 
-        $body = stream_for(\json_encode(\array_merge(self::$defaultBody, [
+        $body = Utils::streamFor(\json_encode(\array_merge(self::prepareBody($action), [
             'email' => $action->email(),
             'password' => $action->clearTextPassword(),
             'returnSecureToken' => true,
@@ -125,9 +128,9 @@ final class GuzzleHandler implements Handler
 
     private function emailAndOobCode(SignInWithEmailAndOobCode $action): Request
     {
-        $uri = uri_for('https://www.googleapis.com/identitytoolkit/v3/relyingparty/emailLinkSignin');
+        $uri = Utils::uriFor('https://www.googleapis.com/identitytoolkit/v3/relyingparty/emailLinkSignin');
 
-        $body = stream_for(\json_encode(\array_merge(self::$defaultBody, [
+        $body = Utils::streamFor(\json_encode(\array_merge(self::prepareBody($action), [
             'email' => $action->email(),
             'oobCode' => $action->oobCode(),
             'returnSecureToken' => true,
@@ -140,14 +143,20 @@ final class GuzzleHandler implements Handler
 
     private function idpCredentials(SignInWithIdpCredentials $action): Request
     {
-        $uri = uri_for('https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp');
+        $uri = Utils::uriFor('https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp');
 
-        $body = stream_for(\json_encode(\array_merge(self::$defaultBody, [
-            'postBody' => \http_build_query([
-                'access_token' => $action->accessToken(),
-                'id_token' => $action->idToken(),
-                'providerId' => $action->provider(),
-            ]),
+        $postBody = [
+            'access_token' => $action->accessToken(),
+            'id_token' => $action->idToken(),
+            'providerId' => $action->provider(),
+        ];
+
+        if ($action->oauthTokenSecret()) {
+            $postBody['oauth_token_secret'] = $action->oauthTokenSecret();
+        }
+
+        $body = Utils::streamFor(\json_encode(\array_merge(self::prepareBody($action), [
+            'postBody' => \http_build_query($postBody),
             'returnIdpCredential' => true,
             'requestUri' => $action->requestUri(),
         ])));
@@ -159,7 +168,7 @@ final class GuzzleHandler implements Handler
 
     private function refreshToken(SignInWithRefreshToken $action): Request
     {
-        $body = build_query([
+        $body = Query::build([
             'grant_type' => 'refresh_token',
             'refresh_token' => $action->refreshToken(),
         ]);
@@ -169,8 +178,22 @@ final class GuzzleHandler implements Handler
             'Accept' => 'application/json',
         ];
 
-        $uri = uri_for('https://securetoken.googleapis.com/v1/token');
+        $uri = Utils::uriFor('https://securetoken.googleapis.com/v1/token');
 
         return new Request('POST', $uri, $headers, $body);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function prepareBody(SignIn $action): array
+    {
+        $body = self::$defaultBody;
+
+        if ($action instanceof IsTenantAware && $tenantId = $action->tenantId()) {
+            $body['tenantId'] = $tenantId->toString();
+        }
+
+        return $body;
     }
 }

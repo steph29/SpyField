@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6caa610d8ad8bfaec13aabf2fac506bad00cdde6',
+    'reference' => '5c1c02983a47545bd93531f90e3c70349d245e16',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6caa610d8ad8bfaec13aabf2fac506bad00cdde6',
+      'reference' => '5c1c02983a47545bd93531f90e3c70349d245e16',
     ),
     'altorouter/altorouter' => 
     array (
@@ -46,24 +46,6 @@
       array (
       ),
       'reference' => 'd2113d9b2e0e349796e72d2a63cf9319100382d2',
-    ),
-    'giggsey/libphonenumber-for-php' => 
-    array (
-      'pretty_version' => '8.12.27',
-      'version' => '8.12.27.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f4d3aab2d2f7e0f82381303019be77fd22c49efe',
-    ),
-    'giggsey/locale' => 
-    array (
-      'pretty_version' => '1.9',
-      'version' => '1.9.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b07f1eace8072ccc61445ad8fbd493ff9d783043',
     ),
     'google/auth' => 
     array (
@@ -148,12 +130,12 @@
     ),
     'kreait/firebase-php' => 
     array (
-      'pretty_version' => '4.44.0',
-      'version' => '4.44.0.0',
+      'pretty_version' => '5.19.0',
+      'version' => '5.19.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '61264eddd4ff5d9d6726318dbcabce39decea1e0',
+      'reference' => '3e056f77c3499e86bfbf9e5af8776c2fb070453d',
     ),
     'kreait/firebase-tokens' => 
     array (
@@ -164,15 +146,6 @@
       ),
       'reference' => 'b39d7c3a78d0912c9a617cd42d4bd356209b1b91',
     ),
-    'kreait/gcp-metadata' => 
-    array (
-      'pretty_version' => '1.2.0',
-      'version' => '1.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd9a1afe244c477f4e7333e2a7ad3638a6d8d03ec',
-    ),
     'lcobucci/jwt' => 
     array (
       'pretty_version' => '3.4.5',
@@ -181,24 +154,6 @@
       array (
       ),
       'reference' => '511629a54465e89a31d3d7e4cf0935feab8b14c1',
-    ),
-    'league/flysystem' => 
-    array (
-      'pretty_version' => '1.1.4',
-      'version' => '1.1.4.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'f3ad69181b8afed2c9edf7be5a2918144ff4ea32',
-    ),
-    'league/mime-type-detection' => 
-    array (
-      'pretty_version' => '1.7.0',
-      'version' => '1.7.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3',
     ),
     'monolog/monolog' => 
     array (
@@ -328,15 +283,6 @@
       array (
       ),
       'reference' => 'b83594e2323c5d6e80785df3f91b9d1d32aad530',
-    ),
-    'superbalist/flysystem-google-storage' => 
-    array (
-      'pretty_version' => '7.2.2',
-      'version' => '7.2.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '87e2f450c0e4b5200fef9ffe6863068cc873d734',
     ),
     'symfony/polyfill-ctype' => 
     array (

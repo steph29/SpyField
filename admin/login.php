@@ -5,7 +5,9 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 
 <h2 class="text-center">Connected place</h2>
 <section class="container-fluid text-center">
-      <form action= "/admin" method="POST">
+
+
+      <form action= "/code" method="POST">
         <div class="form-group my-3">
           <label for="login" class="col-form-label">login </label>
           <input
@@ -31,12 +33,6 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
           name="submit"
         >
           Connexion
-        </button>
-        <button
-          type="submit"
-          class="btn btn-outline-danger m-4"
-        >
-          Cancel
         </button>
       </form>
     </section>

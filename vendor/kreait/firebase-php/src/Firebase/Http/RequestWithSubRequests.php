@@ -1,16 +1,13 @@
 <?php
 
-/** @noinspection ReturnTypeCanBeDeclaredInspection */
-
 declare(strict_types=1);
 
 namespace Kreait\Firebase\Http;
 
 use GuzzleHttp\Psr7\AppendStream;
 use GuzzleHttp\Psr7\Request;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
 /**
@@ -33,9 +30,6 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
 
     /** @var string */
     private $boundary;
-
-    /** @var array */
-    private $headers;
 
     /** @var AppendStream */
     private $body;
@@ -66,9 +60,11 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
 
         $request = new Request($this->method, $uri, $headers, $this->body, $version);
 
-        $contentLength = $request->getBody()->getSize();
-        if ($contentLength !== null) {
-            $request = $request->withHeader('Content-Length', (string) $contentLength);
+        if (($requestBody = $request->getBody()) !== null) {
+            $contentLength = $requestBody->getSize();
+            if ($contentLength !== null) {
+                $request = $request->withHeader('Content-Length', (string) $contentLength);
+            }
         }
 
         $this->wrappedRequest = $request;
@@ -79,7 +75,7 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
         return $this->subRequests;
     }
 
-    private function appendPartForSubRequest(RequestInterface $subRequest)
+    private function appendPartForSubRequest(RequestInterface $subRequest): void
     {
         $this->appendStream("--{$this->boundary}\r\n");
         $this->appendStream($this->subRequestHeadersAsString($subRequest)."\r\n\r\n");
@@ -87,14 +83,9 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
         $this->appendStream($subRequest->getBody()."\r\n");
     }
 
-    private function appendStream($value)
+    private function appendStream(string $value): void
     {
-        // Objects are passed by reference, we want to ensure that they are not changed
-        if ($value instanceof StreamInterface) {
-            $value = (string) $value;
-        }
-
-        $this->body->addStream(stream_for($value));
+        $this->body->addStream(Utils::streamFor($value));
     }
 
     private function subRequestHeadersAsString(RequestInterface $request): string
