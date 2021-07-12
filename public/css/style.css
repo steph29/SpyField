@@ -114,6 +114,13 @@ label::placeholder::placeholder {
   text-align: left;
 }
 
+td,
+th,
+tr {
+  color: #8e8c8c;
+  text-align: center;
+}
+
 /*# sourceMappingURL=login.component.css.map */
 
 /*# sourceMappingURL=style.css.map */

@@ -113,7 +113,10 @@ label::placeholder {
 .col-form-label {
   text-align: left;
 }
-td {
+td,
+th,
+tr {
   color: $LightGrey;
+  text-align: center;
 }
 /*# sourceMappingURL=login.component.css.map */

@@ -5,7 +5,6 @@ include('dbconfig.php') ;
 if(isset($_POST['submit'])){
 
 $login = $_POST['login'];
-// password need to be hashed
 $password = $_POST['password'];
 
 $postData = [
