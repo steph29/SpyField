@@ -113,6 +113,11 @@ label::placeholder::placeholder {
 .col-form-label {
   text-align: left;
 }
+td,
+th,
+tr {
+  color: LightGray;
+}
 
 td,
 th,
