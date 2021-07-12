@@ -58,10 +58,6 @@ footer {
   text-decoration: none;
 }
 
-form {
-  margin-top: 10%;
-}
-
 h2 {
   margin-top: 0;
   font-weight: 100;
@@ -91,10 +87,38 @@ input {
   border-color: #1f2f44;
 }
 
+label::-webkit-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label:-ms-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
+label::-ms-input-placeholder {
+  font-family: "Special Elite", cursive;
+  color: #8e8c8c;
+}
+
 label::placeholder {
   font-family: "Special Elite", cursive;
   color: #8e8c8c;
 }
+
+label::-webkit-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
+label:-ms-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
+label::-ms-input-placeholder::placeholder {
+  opacity: 0.5;
+}
+
 label::placeholder::placeholder {
   opacity: 0.5;
 }
@@ -113,11 +137,6 @@ label::placeholder::placeholder {
 .col-form-label {
   text-align: left;
 }
-td,
-th,
-tr {
-  color: LightGray;
-}
 
 td,
 th,
@@ -125,7 +144,4 @@ tr {
   color: #8e8c8c;
   text-align: center;
 }
-
-/*# sourceMappingURL=login.component.css.map */
-
 /*# sourceMappingURL=style.css.map */
