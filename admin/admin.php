@@ -26,6 +26,8 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                               <th>S1.no</th>
                               <th>name</th>
                               <th>password</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -50,9 +52,7 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                                             <form action="<?= $router->generate('delete')?>" method="post">
                                                 <button type="submit" name="delete" value="<?= $key?>" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
-                                        
                                         </td>
-
                                     </tr>
                                 <?php 
                             }
