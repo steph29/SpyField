@@ -31,6 +31,9 @@
           <a class="nav-link" href="<?= $router->generate('admin')?>">Admin</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="<?= $router->generate('contact')?>">Contact</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="<?= $router->generate('loggout') ?>">Logout</a>
         </li>
         
