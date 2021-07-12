@@ -7,7 +7,7 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 <section class="container-fluid text-center">
 
 
-      <form action= "/code" method="POST">
+      <form action= "code" method="POST">
         <div class="form-group my-3">
           <label for="login" class="col-form-label">login </label>
           <input
