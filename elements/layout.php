@@ -36,7 +36,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/mission/Mon-voyage-79">Mission</a>
+          <a class="nav-link" href="mission/Mon-voyage-79">Mission</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
@@ -55,7 +55,7 @@
 <?= $pageContent  ?>
 </div>
 
-<footer class="container-fluid text-center copyright">
+<footer class="container-fluid text-center fixed-bottom copyright">
   <p>
     &copy; This website is an original creation of Stéphane Verardo, Anything
     looking as reality is pure hasard. June 2021
