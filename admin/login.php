@@ -5,15 +5,23 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 
 <h2 class="text-center">Connected place</h2>
 <section class="container-fluid text-center">
+<div class="col-md-12">
+          <?php 
+                if(isset($_SESSION['status']) && $_SESSION['status'] != ""){
+                echo "<h5 class= 'alert alert-success'>".$_SESSION['status']." </h5>";
+                unset($_SESSION['status']);
+              }
+          ?>
+</div>
 
 
-      <form action= "code" method="POST">
+      <form action= "connect" method="POST">
         <div class="form-group my-3">
-          <label for="login" class="col-form-label">login </label>
+          <label for="login" class="col-form-label">Email </label>
           <input
-            type="text"
+            type="email"
             class="form-control"
-            name="login"
+            name="email"
             placeholder="James.Bond"
 
           />
@@ -30,7 +38,7 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
         <button
           type="submit"
           class="btn btn-outline-success m-4"
-          name="submit"
+          name="loginBtn"
         >
           Connexion
         </button>

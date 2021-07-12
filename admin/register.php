@@ -2,7 +2,7 @@
 session_start();
 $pageTitle = "Reigster page";
 $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionner votre voisin ... "; ?>
-<h1>Envi de changer le monde? Tout commence ici </h1>
+<h1 class="text-center my-5">Want to change the world ?  you are in the place </h1>
 
 <div class="container my-5">
 <div class="row justify-content-center">
@@ -16,7 +16,7 @@ $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionne
 ?>
 <div class="card">
 <div class="card-header">
-<h4>Register Page
+<h4>Sign In
     <a href="<?= $router->generate('home')?>" class="btn btn-danger float-end">Back</a>
 
 </h4>

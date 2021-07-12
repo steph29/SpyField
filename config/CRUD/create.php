@@ -17,39 +17,32 @@ include("../config/dbconfig.php");
 
 if(isset($_GET['id'])){
     $key_child = $_GET['id'];
-    $ref_table = 'users/';
+
+    $ref_table = 'missions/';
     $getData = $database->getReference($ref_table)->getChild($key_child)->getValue();
 
     if($getData > 0) {
         ?>
         
-        
-        
 <form action="<?= $router->generate('update')?>" method="post">
 <input type="hidden" name="key" value="<?= $key_child?>">
 
- <div class="form-group my-3">
-          <label for="login" class="col-form-label">login </label>
-          <input
-            type="text"
-            class="form-control"
-            value= "<?= $getData['login'] ?>"
-            name="login"
-            placeholder="James.Bond"
-
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="password" class="col-form-label">Password</label>
-          <input
-            type="text"
-            class="form-control"
-            value= "<?= $getData['password'] ?>"
-            name="password"
-          />
-        </div>
-
+<div class="form-group mb-3">
+<label for="">Agent</label>
+<input type="text" name="agent" class="form-control">
+</div>
+<div class="form-group mb-3">
+<label for="">Type of mission</label>
+<input type="text" name="missiontype" class="form-control">
+</div>
+<div class="form-group mb-3">
+<label for="">Target</label>
+<input type="text" name="target" class="form-control">
+</div>
+<div class="form-group mb-3">
+<label for="">Country</label>
+<input type="text" name="country" class="form-control">
+</div>
 
 <div class="form-group mb-3">
 <button type="submit" name="update_contact" class="btn btn-primary">Update contact</button>
