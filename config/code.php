@@ -4,25 +4,25 @@ include('dbconfig.php') ;
 
 if(isset($_POST['submit'])){
 
-$name = $_POST['name'];
+$login = $_POST['login'];
 // password need to be hashed
 $password = $_POST['password'];
 
 $postData = [
-    'name' => $name,
-    'password' => $password
+    'login' => $login,
+    'password' => $password,
 ];
 
-$ref_table = 'users';
+$ref_table = 'users/';
 $postRef = $database->getReference($ref_table)->push($postData);
 
- if($postRef_result){
+ if($postRef){
 
-        $_SESSION['status'] = "Contact Add Successfully";
-        header('Location: /admin');
+        $_SESSION['status'] = "welcome, Dear " . $login;
+        header('Location: admin');
     }else{
-         $_SESSION['status'] = "Contact not inserted. Something is wrong";
-        header('Location: /admin');
+         $_SESSION['status'] = "Connexion failed. Are you really allowed? ";
+        header('Location: admin');
     }
 
 }
