@@ -91,38 +91,10 @@ input {
   border-color: #1f2f44;
 }
 
-label::-webkit-input-placeholder {
-  font-family: "Special Elite", cursive;
-  color: #8e8c8c;
-}
-
-label:-ms-input-placeholder {
-  font-family: "Special Elite", cursive;
-  color: #8e8c8c;
-}
-
-label::-ms-input-placeholder {
-  font-family: "Special Elite", cursive;
-  color: #8e8c8c;
-}
-
 label::placeholder {
   font-family: "Special Elite", cursive;
   color: #8e8c8c;
 }
-
-label::-webkit-input-placeholder::placeholder {
-  opacity: 0.5;
-}
-
-label:-ms-input-placeholder::placeholder {
-  opacity: 0.5;
-}
-
-label::-ms-input-placeholder::placeholder {
-  opacity: 0.5;
-}
-
 label::placeholder::placeholder {
   opacity: 0.5;
 }
@@ -141,4 +113,7 @@ label::placeholder::placeholder {
 .col-form-label {
   text-align: left;
 }
+
+/*# sourceMappingURL=login.component.css.map */
+
 /*# sourceMappingURL=style.css.map */
