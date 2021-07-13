@@ -2,7 +2,11 @@
 session_start();
 $pageTitle = "Admin dasboard";
 $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
-<h1>Hy <?= $_SESSION['login'] ?></h1>
+<!-- <h1>Hy <?php 
+include('../config/dbconfig.php');
+$users = $auth->listUsers();
+?> <?= $users->displayName;
+?></h1> -->
 
 
 <div class="container">
@@ -53,7 +57,7 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                                         <td> <a href="/create?id=<?= $key ;?>" class="btn btn-outline-success btn-sm">Edit</a></td>
                                         <td>
                                             <form action="<?= $router->generate('delete')?>" method="post">
-                                                <button type="button" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">Delete</button>
+                                                <button type="submit" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
