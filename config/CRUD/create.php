@@ -6,7 +6,7 @@
 <div class="card-header">
 <h4>Create & update Mission
 </h4>
-<a href="<?= $router->generate('admin')?>" class="btn btn-outline-danger float-end">Back</a>
+<a href="<?= $router->generate('mission')?>" class="btn btn-outline-danger float-end">Back</a>
 </div>
 
 
@@ -51,13 +51,13 @@ if(isset($_GET['id'])){
 <?php
     }else{
         $_SESSION['status'] = "Invalid id" ;
-        header('Loaction: admin');
+        header('Loaction: mission');
         exit();
     }
 }else {
     
     $_SESSION['status'] = "Not found" ;
-    header('Loaction: admin');
+    header('Loaction: mission');
     exit();
 }
 

@@ -23,12 +23,22 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
             </div>
               <div class="card-body">
                   <table class="table table-bordered table-striped">
-                      <thead>
+                      <thead> 
                           <tr>
-                              <th>Agent</th>
-                              <th>Mission Type</th>
-                              <th>Target</th>
+                              <th>mission</th>
+                              <th>codeName</th>
+                              <th>desc</th>
+                              <th>type</th>
+                              <th>contact</th>
+                              <th>status</th>
+                              <th>hideouts</th>
+                              <th>specialities</th>
+                              <th>startDate</th>
+                              <th>endDate</th>
                               <th>Country</th>
+                              <th>target</th>
+                              <th>agent</th>
+
                               <?php 
                               if(isset($_SESSION[ 'verified_user_id'])): ?>
                         <th>Edit</th>
@@ -51,10 +61,19 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
                             foreach ($fetchData as $key => $row) {
                                 ?>
                                     <tr>
-                                        <td> <?= $row['agent'] ;?></td>
-                                        <td> <?= $row['missiontype'] ;?></td>
-                                        <td> <?= $row['target'] ;?></td>
+                                        <td> <?= $row['mission'] ;?></td>
+                                        <td> <?= $row['codeName'] ;?></td>
+                                        <td> <?= $row['desc'] ;?></td>
+                                        <td> <?= $row['type'] ;?></td>
+                                        <td> <?= $row['contact'] ;?></td>
+                                        <td> <?= $row['status'] ;?></td>
+                                        <td> <?= $row['hideouts'] ;?></td>
+                                        <td> <?= $row['specialities'] ;?></td>
+                                        <td> <?= $row['startDate'] ;?></td>
+                                        <td> <?= $row['endDate'] ;?></td>
                                         <td> <?= $row['country'] ;?></td>
+                                        <td> <?= $row['target'] ;?></td>
+                                        <td> <?= $row['agent'] ;?></td>
                                         <?php 
                                         if(isset($_SESSION[ 'verified_user_id'])): 
                                         ?>

@@ -13,10 +13,10 @@ if(isset($_POST['delete'])){
     if($deleteQuery){
 
         $_SESSION['status'] = "Mission deleted";
-        header('Location: admin');
+        header('Location: mission');
     }else{
          $_SESSION['status'] = "Mission not deleted";
-        header('Location: admin');
+        header('Location: mission');
     }
 }
 

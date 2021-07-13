@@ -6,13 +6,16 @@ $router->map('GET|POST', '/dbconfig', 'config/dbconfig', 'dbconfig');
 $router-> map('GET|POST', '/signin', 'config/signin', 'signin' );
 $router-> map('GET|POST', '/loggout', 'config/loggout', 'loggout' );
 $router-> map('GET|POST', '/connect', 'config/connect', 'connect' );
+$router-> map('GET|POST', '/new_agent', 'config/new_agent', 'new_agent' );
 
 // Router website
 $router->map('GET', '/', 'templates/home', 'home');
 $router->map('GET', '/contact', 'templates/contact', 'contact', 'contact');
 $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
-$router-> map('GET|POST', '/add_mission', 'admin/add_mission', 'add' );
+$router-> map('GET|POST', '/add', 'admin/add', 'agent' );
+$router-> map('GET|POST', '/add_agent', 'admin/add_agent', 'add_agent');
+
 $router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
 $router-> map('GET', '/mission', 'mission/mission', 'mission');
 
