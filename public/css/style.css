@@ -78,7 +78,9 @@ button {
   border-radius: 12px !important;
 }
 
-input {
+input,
+textarea,
+select {
   margin: auto auto;
   background-color: #1f2f44 !important;
   border-color: #1f2f44 !important;
@@ -93,7 +95,9 @@ label::placeholder::placeholder {
   opacity: 0.5;
 }
 
-.form-control {
+.form-control,
+textarea,
+select {
   border-radius: 16px;
   color: lightgray !important;
 }
@@ -114,6 +118,11 @@ th,
 tr {
   color: #8e8c8c;
   text-align: center;
+}
+
+section {
+  border: 3px solid #1f2f44;
+  border-radius: 25px;
 }
 
 /*# sourceMappingURL=login.component.css.map */

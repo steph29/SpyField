@@ -4,16 +4,35 @@ include('dbconfig.php') ;
 
 if(isset($_POST['add_mission'])){
 
-$missiontype = $_POST['missiontype'];
+$mission = $_POST['mission'];
+$codeName = $_POST['codeName'];
+$desc = $_POST['desc'];
+$type= $_POST['type'];
+$contact= $_POST['contact'];
+$status= $_POST['status'];
+$hideouts= $_POST['hideouts'];
+$specialities= $_POST['specialities'];
+$startDate= $_POST['startDate'];
+$endDate= $_POST['endDate'];
 $country = $_POST['country'];
 $target = $_POST['target'];
 $agent = $_POST['agent'];
 
 $postData = [
-    'missiontype' => $missiontype,
+    'mission' => $mission,
+    'codeName' => $codeName,
+    'desc' => $desc,
+    'type' => $type,
+    'contact' => $contact,
+    'status' => $status,
+    'hideouts' => $hideouts,
+    'specialities' => $specialities,
+    'startDate' => $startDate,
+    'endDate' => $endDate,
     'country' => $country,
     'target' => $target,
     'agent' => $agent,
+    
 ];
 
 $ref_table = 'missions/';
@@ -21,10 +40,10 @@ $postRef = $database->getReference($ref_table)->push($postData);
 
  if($postRef){
 
-        $_SESSION['status'] = "Mission saved " . $login;
-        header('Location: admin');
+        $_SESSION['status'] = "Mission created ";
+        header('Location: mission');
     }else{
-         $_SESSION['status'] = "Mission unsaved. Something were wrong ";
+         $_SESSION['status'] = "Mission uncreated. Something were wrong ";
         header('Location: admin');
     }
 
