@@ -4,6 +4,7 @@ $pageTitle = "Connectez-vous";
 $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 
 <h2 class="text-center">Connected place</h2>
+<h5 class="text-center">Nowaday, it's better to be connected</h5>
 <section class="container-fluid text-center">
 <div class="col-md-12 justify-content-center align-items-center d-flex">
           <?php 
@@ -16,19 +17,20 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
 
 
       <form action= "connect" method="POST">
-        <div class="form-group my-3">
-          <label for="login" class="col-form-label">Secret Callsign or email </label>
+        <div class= "container">
+          <div class="form-group my-3">
+          <label for="login" class="col-form-label">Secret email </label>
           <input
             type="email"
             class="form-control"
             name="email"
-            placeholder="James.Bond"
+            placeholder="james.bond@007.gb"
 
           />
         </div>
 
         <div class="form-group">
-          <label for="password" class="col-form-label">Password</label>
+          <label for="password" class="col-form-label">Secret Password</label>
           <input
             type="password"
             class="form-control"
@@ -37,11 +39,20 @@ $pageDesc = "Le meilleur moyen de rester au jus, c'est de se connecter !" ;?>
         </div>
         <button
           type="submit"
-          class="btn btn-outline-success m-4"
+          class="btn btn-outline-success m-4 loginButton "
           name="loginBtn"
         >
           Connexion
         </button>
+        <button
+          type="submit"
+          class="btn btn-outline-danger m-4 loginButton "
+          name="cancel"
+        >
+          Cancel
+        </button>
+        </div>
+        
       </form>
     </section>
 

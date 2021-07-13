@@ -27,9 +27,9 @@ if(isset($_POST['loginBtn'])){
         header('location: admin');
 
     } catch (InvalidToken $e) {
-        echo 'The token is invalid: '.$e->getMessage();
+        echo 'The token is invalid: ';
     } catch (\InvalidArgumentException $e) {
-        echo 'The token could not be parsed: '.$e->getMessage();
+        echo 'The token could not be parsed: ';
     }
 
     } catch (Exception $e) {
@@ -38,7 +38,6 @@ if(isset($_POST['loginBtn'])){
     }
 
 } catch (\Kreait\Firebase\Exception\Auth\UserNotFound $e) {
-    // echo $e->getMessage();
      $_SESSION['status'] = "PLease, register you before.";
     header('location: login');
 }
@@ -48,6 +47,8 @@ if(isset($_POST['loginBtn'])){
     header('location: login');
 }
 
-
+if(isset($_POST['cancel'])){
+    header('Location: mission');
+}
 
 ?>
