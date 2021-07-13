@@ -14,7 +14,7 @@ $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
 $router-> map('GET|POST', '/add_mission', 'admin/add_mission', 'add' );
 $router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
-$router-> map('GET', '/mission/[*:slug]-[i:id]', 'mission/mission');
+$router-> map('GET', '/mission', 'mission/mission', 'mission');
 
 // CRUD
 $router-> map('GET|POST', '/create', 'config/CRUD/create', 'create');

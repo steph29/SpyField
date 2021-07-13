@@ -6,7 +6,7 @@
 <div class="card-header">
 <h4>Create & update Mission
 </h4>
-<a href="<?= $router->generate('admin')?>" class="btn btn-danger float-end">Back</a>
+<a href="<?= $router->generate('admin')?>" class="btn btn-outline-danger float-end">Back</a>
 </div>
 
 
@@ -45,7 +45,7 @@ if(isset($_GET['id'])){
 </div>
 
 <div class="form-group mb-3">
-<button type="submit" name="update_contact" class="btn btn-primary">Update contact</button>
+<button type="submit" name="update_contact" class="btn btn-outline-success">Update contact</button>
 </div>
 </form>
 <?php
