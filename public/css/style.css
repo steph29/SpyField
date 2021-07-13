@@ -98,6 +98,7 @@ label::placeholder::placeholder {
 
 .form-control {
   border-radius: 16px;
+  color: lightgray !important;
 }
 
 .form-group {

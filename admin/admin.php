@@ -80,7 +80,11 @@ $users = $auth->listUsers();
               </div>
                        <div>
             
-                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-success float-end my-4">Add </a>
+                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-success float-end my-4">Add Mission</a>
+</div>
+                       <div>
+            
+                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-success float-end my-4">Add Agent</a>
 </div>
         </div>
     
