@@ -19,26 +19,29 @@
           <a class="nav-link" href="<?= $router->generate('home') ?>">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="mission/Mon-voyage-79">Mission</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= $router->generate('login') ?>">Login</a>
-        </li>
-
+          <a class="nav-link" href="<?= $router->generate('mission')?>">Mission</a>
+          <?php if(!isset($_SESSION[ 'verified_user_id'])) : ?>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= $router->generate('login') ?>">Login</a>
+          </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= $router->generate('registerPage') ?>">Register</a>
         </li>
         <!-- Rendre le bouton visible si la personne est connectée -->
+        
+        
+        <?php else : ?>
         <li class="nav-item">
           <a class="nav-link" href="<?= $router->generate('admin')?>">Admin</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= $router->generate('contact')?>">Contact</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="<?= $router->generate('loggout') ?>">Logout</a>
         </li>
-        
+        <?php endif ; ?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= $router->generate('contact')?>">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
