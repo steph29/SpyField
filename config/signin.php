@@ -8,6 +8,7 @@ if(isset($_POST['register'])){
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
+    $createAt = setlocale(LC_TIME, 'fra_fra');
 
 
     $userProperties = [
@@ -16,6 +17,7 @@ if(isset($_POST['register'])){
     'phoneNumber' => '+33'.$phone,
     'password' => $password,
     'displayName' => $fullname,
+    'createdAt' => $createAt
 ];
 
     $createdUser = $auth->createUser($userProperties);
