@@ -6,19 +6,20 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <?php 
+    <div class="row ">
+        <div class="col-md-12 justify-content-center align-items-center d-flex">
+            <div>
+                      <?php 
                 if(isset($_SESSION['status']) && $_SESSION['status'] != ""){
                 echo "<h5 class= 'alert alert-success'>".$_SESSION['status']." </h5>";
                 unset($_SESSION['status']);
               }
 
 ?>
-              <div>
-            
-                 <a href="<?= $router->generate('add')?>" class="btn btn-primary float-end my-4">Add Mission</a>
-</div>
+            </div>
+      
+     
+            </div>
               <div class="card-body">
                   <table class="table table-bordered table-striped">
                       <thead>
@@ -49,11 +50,10 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                                         <td> <?= $row['missiontype'] ;?></td>
                                         <td> <?= $row['target'] ;?></td>
                                         <td> <?= $row['country'] ;?></td>
-                                        <td> <a href="/create?id=<?= $key ;?>" class="btn btn-primary btn-sm">Edit</a></td>
-                                        <!-- <td><a href="/delete?id=<?= $key; ?>" class="btn btn-danger btn-sm">Delete</a></td> -->
+                                        <td> <a href="/create?id=<?= $key ;?>" class="btn btn-outline-primary btn-sm">Edit</a></td>
                                         <td>
                                             <form action="<?= $router->generate('delete')?>" method="post">
-                                                <button type="submit" name="delete" value="<?= $key?>" class="btn btn-danger btn-sm align-top my-0">Delete</button>
+                                                <button type="button" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -74,6 +74,10 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                       </tbody>
                   </table>
               </div>
+                       <div>
+            
+                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-primary float-end my-4">Add </a>
+</div>
         </div>
-    </div>
+    
 </div>

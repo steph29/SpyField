@@ -6,18 +6,21 @@ $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionne
 
 <div class="container my-5">
 <div class="row justify-content-center">
-<div class="col-md-6">
-    <?php 
+<div class="col-md-6 ">
+    <div class="col-md-12 justify-content-center align-items-center d-flex">
+          <?php 
                 if(isset($_SESSION['status']) && $_SESSION['status'] != ""){
                 echo "<h5 class= 'alert alert-success'>".$_SESSION['status']." </h5>";
                 unset($_SESSION['status']);
               }
 
-?>
+?> 
+    </div>
+ 
 <div class="card">
 <div class="card-header">
 <h4>Sign In
-    <a href="<?= $router->generate('home')?>" class="btn btn-danger float-end">Back</a>
+    <a href="<?= $router->generate('home')?>" class="btn btn-outline-danger float-end">Back</a>
 
 </h4>
 </div>
@@ -43,7 +46,7 @@ $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionne
 </div>
 
 <div class="form-group mb-3">
-<button type="submit" name="register" class="btn btn-primary">Sing In</button>
+<button type="submit" name="register" class="btn btn-outline-primary">Sing In</button>
 </div>
 </form>
 </div>

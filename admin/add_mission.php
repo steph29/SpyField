@@ -9,7 +9,7 @@ session_start();
 <div class="card-header">
 <h4>Add New Mission
 </h4>
-<a href="<?= $router->generate('home')?>" class="btn btn-danger float-end">Back</a>
+<a href="<?= $router->generate('admin')?>" class="btn btn-outline-danger float-end">Back</a>
 </div>
 
 
@@ -32,7 +32,7 @@ session_start();
 <input type="text" name="target" class="form-control">
 </div>
 <div class="form-group mb-3">
-<button type="submit" name="add_mission" class="btn btn-primary">Add Mission</button>
+<button type="submit" name="add_mission" class="btn btn-outline-primary">Add Mission</button>
 </div>
 </form>
 </div>
