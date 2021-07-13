@@ -50,7 +50,7 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
                                         <td> <?= $row['missiontype'] ;?></td>
                                         <td> <?= $row['target'] ;?></td>
                                         <td> <?= $row['country'] ;?></td>
-                                        <td> <a href="/create?id=<?= $key ;?>" class="btn btn-outline-primary btn-sm">Edit</a></td>
+                                        <td> <a href="/create?id=<?= $key ;?>" class="btn btn-outline-success btn-sm">Edit</a></td>
                                         <td>
                                             <form action="<?= $router->generate('delete')?>" method="post">
                                                 <button type="button" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">Delete</button>
@@ -76,7 +76,7 @@ $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
               </div>
                        <div>
             
-                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-primary float-end my-4">Add </a>
+                 <a href="<?= $router->generate('add')?>" class="btn btn-outline-success float-end my-4">Add </a>
 </div>
         </div>
     
