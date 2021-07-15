@@ -13,15 +13,16 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
                 <h3 class="text-center ">Select your mission</h3>
                 <div class="justify-content-center d-flex my-5">
                     <select name="missionType" class="text-center">
-                                        <option >Select Your mission </option><?php include("../config/dbconfig.php");
-                        $ref_table = 'missions/';
-                        $fetchData = $database->getReference($ref_table)->getValue();
+                            <option >Select Your mission </option>
+                            <?php include("../config/dbconfig.php");
+                                $ref_table = 'missions/';
+                                $fetchData = $database->getReference($ref_table)->getValue();
 
-                        if ($fetchData > 0) {
-                            $i = 0;
-                            foreach ($fetchData as $key => $row) {
-                                ?>
-                        <option name="<?= $row['mission'] ; ?>" > <?= $row['mission'] ; ?> </option>
+                                if ($fetchData > 0) {
+                                    $i = 0;
+                                    foreach ($fetchData as $key => $row) {
+                                        ?>
+                                <option name="<?= $row['mission'] ; ?>" > <?= $row['mission'] ; ?> </option>
 
                         <?php
                             }
