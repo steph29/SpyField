@@ -23,14 +23,15 @@ if(isset($_POST['register'])){
     $createdUser = $auth->createUser($userProperties);
 
 if($createdUser){
-
         $_SESSION['status'] = "User created successfully";
         header('Location: admin');
     }else{
          $_SESSION['status'] = "User not created. Something is wrong";
         header('Location: register');
     }
-
+}elseif (isset($_POST['cancel'])) {
+$_SESSION['status'] = "User created successfully";
+        header('Location: home');
 }
 
 

@@ -16,11 +16,11 @@ $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionne
 
 ?> 
     </div>
- 
-<div class="card">
+ <section>
+
 <div class="card-header">
 <h4>Sign In
-    <a href="<?= $router->generate('home')?>" class="btn btn-outline-danger float-end">Back</a>
+    
 
 </h4>
 </div>
@@ -29,29 +29,46 @@ $pageDesc = "Inscrivez vous! Pour chnager le monde, creer des missions, espionne
 <div class="card-body">
 <form action="signin" method="POST">
 <div class="form-group mb-3">
-<label for="">Full name</label>
+<label for="" class="col-form-label">Full name</label>
 <input type="text" name="fullname" class="form-control" placeholder="Jean Bond">
 </div>
 <div class="form-group mb-3">
-<label for="">Password</label>
+<label for="" class="col-form-label">Password</label>
 <input type="password" name="password" class="form-control">
 </div>
 <div class="form-group mb-3">
-<label for="">Email</label>
+<label for="" class="col-form-label">Email</label>
 <input type="email" name="email" class="form-control" placeholder="jean.bond@secret.com">
 </div>
 <div class="form-group mb-3">
-<label for="">Phone Number</label>
+<label for="" class="col-form-label">Phone Number</label>
 <input type="number" name="phone" class="form-control" placeholder="123456789">
 </div>
 
-<div class="form-group mb-3">
-<button type="submit" name="register" class="btn btn-outline-primary">Sing In</button>
+<div class="row">
+    <div class="col">
+        <div class="form-group mb-3">
+
+<button type="submit" name="register" class="btn btn-outline-success loginButton">Sing In</button>
 </div>
+    </div>
+    <div class="col">
+        <div class="form-group mb-3">
+
+<button type="submit" name="cancel" class="btn btn-outline-danger loginButton ">Back</button>
+</div>
+    </div>
+</div>
+
+
+
+<div></div>
 </form>
 </div>
 </div>
 
 </div>
 </div>
-</div>
+
+
+ </section>
