@@ -4,7 +4,7 @@
 <div class="col-md-6">
 <div class="card">
 <div class="card-header">
-<h4>Create & update Mission
+<h4>update Mission
 </h4>
 <a href="<?= $router->generate('mission')?>" class="btn btn-outline-danger float-end">Back</a>
 </div>
