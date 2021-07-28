@@ -7,11 +7,12 @@ $router-> map('GET|POST', '/signin', 'config/signin', 'signin' );
 $router-> map('GET|POST', '/loggout', 'config/loggout', 'loggout' );
 $router-> map('GET|POST', '/connect', 'config/connect', 'connect' );
 $router-> map('GET|POST', '/new_agent', 'config/new_agent', 'new_agent' );
+$router-> map('GET|POST', '/mail', 'config/mail', 'mail',  );
 $router-> map('GET|POST', '/selectMission', 'config/selectMission', 'selectMission' );
 
 // Router website
 $router->map('GET', '/', 'templates/home', 'home');
-$router->map('GET', '/contact', 'templates/contact', 'contact', 'contact');
+$router->map('GET', '/contact', 'templates/contact', 'contact');
 $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
 $router-> map('GET|POST', '/add', 'admin/add', 'agent' );
