@@ -14,20 +14,7 @@ require(["esri/config", "esri/Map", "esri/views/MapView"], function (
     map: map,
     center: [-3.505, 47.927], // Longitude, latitude
     zoom: 5, // Zoom level
+
     container: "viewDiv", // Div element
   });
-});
-
-$(document).ready(function (e) {
-  var mission = $("#missionType").change(function () {
-    mission = $(this).val();
-    console.log(mission);
-    readMission();
-  });
-
-  function readMission() {
-    $.post("selectMission", { mission: mission }, function (data) {
-      $(".res").html(data);
-    });
-  }
 });

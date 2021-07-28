@@ -38,8 +38,9 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
                 <div id="viewDiv"></div>
              </section>
         </div>
-
-        <section id="missionSection">
+        
+        <div class="col-md-4">
+            <section id="missionSection">
                 <div class="card-body">
                     <!-- Tableau récap de la mission -->
                     <div class="res"></div>
@@ -47,7 +48,10 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
             </div>
          </div>  
         </section>
+        </div>
+        
     </div>
 </div>
+<script src="script.js"></script>
 
 
