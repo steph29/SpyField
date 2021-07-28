@@ -21,7 +21,6 @@ $ref_table = 'missions/'.$key;
 $updateQuery = $database->getReference($ref_table)->update($updateData);
 
 if($updateQuery){
-
         $_SESSION['status'] = "Mission updated";
         header('Location: admin');
     }else{
