@@ -18,7 +18,8 @@ h1,
 h2,
 input,
 .col-form-label,
-.btn {
+.btn,
+label {
   font-family: "Special Elite", cursive;
   color: #8e8c8c;
 }
