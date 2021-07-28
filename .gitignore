@@ -1,2 +1,8 @@
 spyfield-b2064-firebase-adminsdk-56zwj-0cf183d972.json
 .env
+.DS_Store
+vendor/.DS_Store
+vendor/google/.DS_Store
+vendor/guzzlehttp/.DS_Store
+vendor/kreait/.DS_Store
+vendor/psr/.DS_Store
