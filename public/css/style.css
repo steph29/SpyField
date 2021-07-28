@@ -18,7 +18,8 @@ h1,
 h2,
 input,
 .col-form-label,
-.btn {
+.btn,
+label {
   font-family: "Special Elite", cursive;
   color: #8e8c8c;
 }
@@ -76,7 +77,6 @@ button {
   color: #2b6714;
 }
 
-
 .loginButton {
   border: none !important;
   background-color: #1f2f44 !important;
@@ -90,8 +90,6 @@ select {
   background-color: #1f2f44 !important;
   border-color: #1f2f44 !important;
   border-radius: 12px !important;
-  
-
 }
 
 label::placeholder {

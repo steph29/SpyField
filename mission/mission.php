@@ -52,6 +52,7 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
         
     </div>
 </div>
+<script src="ajax.js"></script>
 <script src="script.js"></script>
 
 
