@@ -8,7 +8,7 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4" >
+        <div class="col-md-4 my-3" >
             <section id="missionSection">
                 <h3 class="text-center ">Select your mission</h3>
                 <div class="justify-content-center d-flex my-5">
@@ -32,14 +32,15 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
                 
             </section>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 my-3">
             <section id="missionSection">
-                <h3 class="text-center">View where the mission is</h3>
-                <div id="viewDiv"></div>
+                <!-- <h3 class="text-center">View where the mission is</h3> -->
+
+                 <div id="mapid"></div>
              </section>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-md-4 my-3">
             <section id="missionSection">
                 <div class="card-body">
                     <!-- Tableau récap de la mission -->

@@ -13,7 +13,7 @@ $users = $auth->listUsers();
 <div class="container-fluid">
     <form action="<?= $router->generate('code')?>" method="post">
     <div class="row">
-        <div class="col">
+        <div class="col my-3">
             <section class="container ">
         <h3 class="text-center ">Select the mission</h3>
         <div class="form-group my-3">
@@ -61,7 +61,7 @@ $users = $auth->listUsers();
         </section>
 </div>
 
-    <div class="col">
+    <div class="col my-3">
         <section class="container ">
             <h3 class="text-center ">Select the mission</h3>
             <div class="form-group my-3">
@@ -111,18 +111,18 @@ $users = $auth->listUsers();
         </section>
     
     </div>
-    <div class="col">
+    <div class="col my-3">
         <section class="container ">
             <h3 class="text-center ">To resume</h3>
                 <div class="form-group mb-3">      
-                    <button type="submit" class="btn btn-outline-success float-end mx-1 loginButton" name="add_mission">Start mission</button>
+                    <button type="submit" class="btn btn-outline-success float-end  loginButton" name="add_mission">Start mission</button>
                 </div>             
                            
                 <div class="form-group mb-3">      
-                    <a href="<?= $router->generate('agent')?>" class="btn btn-outline-success float-end loginButton mx-1">New Agent</a>
+                    <a href="<?= $router->generate('agent')?>" class="btn btn-outline-success float-end loginButton ">New Agent</a>
                 </div> 
                 <div class="form-group mb-3">   
-                    <button type="submit" class="btn btn-outline-danger float-end mx-1 loginButton" name="">Cancel</button>
+                    <button type="submit" class="btn btn-outline-danger float-end  loginButton" name="">Cancel</button>
                 </div>  
             </div>
     </div>
