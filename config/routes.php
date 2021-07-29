@@ -17,10 +17,10 @@ $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
 $router-> map('GET|POST', '/add', 'admin/add', 'agent' );
 $router-> map('GET|POST', '/add_agent', 'admin/add_agent', 'add_agent');
+$router-> map('GET', '/mission', 'admin/mission', 'mission');
 $router-> map('GET|POST', '/status', 'elements/status', 'status');
 
 $router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
-$router-> map('GET', '/mission', 'mission/mission', 'mission');
 
 // CRUD
 $router-> map('GET|POST', '/create', 'config/CRUD/create', 'create');
