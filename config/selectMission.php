@@ -28,9 +28,8 @@ if (isset($_POST['mission'])) {
            <tr><td>country: </td><td>  <?= $getData['country'] ;?></td></tr> 
          </tbody>
     </table>
-           
         <?php 
-
+        exit();
 } 
 }
 ?>
