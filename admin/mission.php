@@ -8,10 +8,10 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12 my-1" >
+        <div class="my-1" >
                 <h3 class="text-center ">Select your mission</h3>
-                <div class="justify-content-center d-flex my-3">
-                        <select class="text-center" id="missionType">
+                <div class=" my-3">
+                        <select class="justify-content-center d-flex text-center linked-select form-control" id="missionType">
                                 <option>Select Your mission </option>
                                 <?php include("../config/dbconfig.php");
                                     $ref_table = 'missions/';

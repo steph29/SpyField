@@ -1,10 +1,11 @@
 <?php
 session_start();
-
 ?>
+
+
 <div class="container my-5">
 <div class="row justify-content-center">
-<div class="col-md-6">
+<div class="col-md-8">
 <div class="card">
 <div class="card-header">
 <h4>Add New Agent
@@ -12,10 +13,13 @@ session_start();
 <a href="<?= $router->generate('admin')?>" class="btn btn-outline-danger float-end">Back</a>
 </div>
 
-
 <div class="card-body">
-<form action="<?= $router->generate('new_agent')?>" method="post">
-<div class="form-group mb-3">
+    <div class="container-fluid">
+    <form action="<?= $router->generate('new_element')?>" method="post">
+    <div class="row">
+         <div class="col my-3">
+<section class="container">
+    <div class="form-group mb-3">
     <label for="">Select your new entry:</label>
 <select name="choice" class="form-control text-center">
 <option name="Agent" value="Agent">Agent</option>
@@ -48,9 +52,19 @@ session_start();
 <input type="text" name="specialities" class="form-control">
 </div>
 <div class="form-group mb-3">
-<button type="submit" name="add_agent" class="btn btn-outline-primary">Add Agent</button>
+<button type="submit" name="add_agent" class="btn btn-outline-success">Add </button>
 </div>
-</form>
+</section>
+
+</form> 
+    </div>
+</div>
+
+    </div>
+
+   
+
+
 </div>
 </div>
 
