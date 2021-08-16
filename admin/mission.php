@@ -1,7 +1,35 @@
 <?php 
 session_start();
 $pageTitle = "Mission dasboard";
-$pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
+$pageDesc = "Retrouvez ici toutes les informations sur vos missions"; 
+header('Access-Control-Allow-Origin: *'); 
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+
+function oauth_authorize($accesstoken) { 
+
+    if ( !empty( $idtoken ) ) {
+
+        // Interroger OAuth Server by DnC
+        include_spip('inc/distant');
+        // Vérifier le jeton d'identité (ID token)
+        $url = "https://spyfield-b2064-default-rtdb.europe-west1.firebasedatabase.app.json";
+        $res = recuperer_url($url);  
+        if ( (int)$res['status'] === 200 ) {
+            if ( isset($_SERVER["HTTP_ORIGIN"]) ) {
+                // Accès HTTP (CORS) : autoriser l'origine
+                $issuer = trim(strtr($_SERVER["REMOTE_ADDR"], '<>"\'', '[]##'));    
+                header('Access-Control-Allow-Origin', $issuer);
+            }
+            return true ;
+        }
+
+    } else return false; 
+
+}
+
+?>
 
 
 <?php include('../elements/status.php') ;?>
@@ -46,6 +74,7 @@ $pageDesc = "Retrouvez ici toutes les informations sur vos missions"; ?>
                         </div>
                         </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="/js/script.js"></script>
+<script src="/js/jquery.xdomainajax.js"></script>
 
+<script src="/js/script.js"></script>
 

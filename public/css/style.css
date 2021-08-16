@@ -152,6 +152,10 @@ img {
   color: white;
 }
 
+#newSelect {
+  height: 60px;
+}
+
 /*# sourceMappingURL=login.component.css.map */
 
 /*# sourceMappingURL=style.css.map */

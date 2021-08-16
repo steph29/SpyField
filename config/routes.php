@@ -9,6 +9,7 @@ $router-> map('GET|POST', '/connect', 'config/connect', 'connect' );
 $router-> map('GET|POST', '/new_element', 'config/new_element', 'new_element' );
 $router-> map('GET|POST', '/mail', 'config/mail', 'mail',  );
 $router-> map('GET|POST', '/selectMission', 'config/selectMission', 'selectMission' );
+$router-> map('GET|POST', '/selectContact', 'config/selectContact', 'selectContact' );
 
 // Router image
 
