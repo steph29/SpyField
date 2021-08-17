@@ -1,7 +1,6 @@
 <?php 
 require '../vendor/autoload.php';
 
-$uri = $_GET['REQUEST_URI'];
 $page = $_GET['page'] ?? '404';
 $router = new AltoRouter();
 
