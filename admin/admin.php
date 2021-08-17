@@ -1,15 +1,9 @@
 <?php 
 session_start();
 $pageTitle = "Admin dasboard";
-$pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; ?>
-<!-- <h1>Hy <?php 
-include('../config/dbconfig.php');
-$users = $auth->listUsers();
-?> <?= $users->displayName;
-?></h1> -->
-
-<?php include('../elements/status.php') ;?>
-
+$pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; 
+include('../elements/status.php'); 
+?>
 
 <div>
     <section class="container d-flex justify-content-center">
@@ -87,20 +81,18 @@ $users = $auth->listUsers();
         <label class="col-form-label">Agent </label>
         <select name="agent" class="form-control text-center linked-select">
         <option >Select your Agent</option>
-     <?php include("../config/dbconfig.php");
-    $ref_table = 'agent/';
+     <?php $ref_table = "agent/";
     $fetchData = $database->getReference($ref_table)->getValue();
 
     if ($fetchData > 0) {
         $i = 0;
         foreach ($fetchData as $key => $row) {
             ?>
-      <option name="<?= $row['callsign'] ; ?>" > <?= $row['callsign'] ; ?> </option>
+      <option name="<?= $row['callsign'] ; ?>" > <?= $row["callsign"] ; ?> </option>
 
       <?php
         }
-    }
-     ?>
+    };?>
     </select>
         </div>
         <div class="form-group my-3">
@@ -113,16 +105,32 @@ $users = $auth->listUsers();
     <textarea type="text" cols="10" rows="5" name="desc"></textarea>
         </div>
     <div class="form-group my-3">
-          <label class="col-form-label">Country </label>
-          <input type="text" class="form-control" name="country"/>
+          <label class="col-form-label">Country</label>
+                <select name="country" class="form-control text-center linked-select">
+        <option >Select the country</option>
+     <?php include("../config/dbconfig.php");
+    $ref_table = 'countries/';
+    $fetchData = $database->getReference($ref_table)->getValue();
+
+    if ($fetchData > 0) {
+        $i = 0;
+        foreach ($fetchData as $key => $row) {
+            ?>
+      <option name="<?= $row['NOM'] ; ?>" > <?= $row['NOM'] ; ?> </option>
+
+      <?php
+        }
+    }
+     ?>
+                </select>
     </div>
 </div> 
 <!-- end of first col -->
 <!-- second col -->
         <div class="col">
         <div class="form-group my-3">
-                <label class="col-form-label">Select the Contact</label>
-                <select name="contact" class="form-control text-center linked-select">
+                <label class="col-form-label">Contact</label>
+                <select name="contact" class="form-control text-center linked-select" id="contact">
         <option >Select your contact</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'contact/';
@@ -133,12 +141,19 @@ $users = $auth->listUsers();
         foreach ($fetchData as $key => $row) {
             ?>
       <option name="<?= $row['callsign'] ; ?>" > <?= $row['callsign'] ; ?> </option>
-
+            
       <?php
-        }
+      
     }
-     ?>
-                </select>
+}
+?>
+    </select>
+                <div id="newSelect" style="display: none">
+            <select name="contact" class="form-control text-center" id="contact">
+        <option >Select your contact</option>
+     <?php include('selectContact')?>
+    </select>
+</div>
         </div>
         <div class="form-group my-3">
           <label class="col-form-label">Type of mission </label>
@@ -146,8 +161,24 @@ $users = $auth->listUsers();
         </div>
         <div class="form-group my-3">
           <label class="col-form-label">Status </label>
-          <input type="text" class="form-control" name="status"/>
-        </div>
+          <select name="status" class="form-control text-center linked-select">
+        <option >Select the status</option>
+     <?php include("../config/dbconfig.php");
+    $ref_table = 'status/';
+    $fetchData = $database->getReference($ref_table)->getValue();
+
+    if ($fetchData > 0) {
+        $i = 0;
+        foreach ($fetchData as $key => $row) {
+            ?>
+      <option name="<?= $row['state'] ; ?>" > <?= $row['state'] ; ?> </option>
+
+      <?php
+        }
+    }
+     ?>
+                </select>
+</div>
         <div class="form-group my-3">
             <label class="col-form-label">Hideouts </label>
             <input type="adress" class="form-control" name="hideouts"/>
@@ -183,3 +214,6 @@ $users = $auth->listUsers();
         </section>
     </form>    
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/js/admin.js"></script>
