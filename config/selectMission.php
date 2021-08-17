@@ -2,13 +2,6 @@
 session_start();
 include('dbconfig.php');
 
-header('Access-Control-Allow-Origin: *'); 
-header("Access-Control-Allow-Credentials: true");
-header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-header('Access-Control-Max-Age: 1000');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
-
-
 if (isset($_POST['mission'])) {
    $key_child = $_POST['mission'];
 
@@ -23,7 +16,8 @@ if (isset($_POST['mission'])) {
             <tr><td>Mission: </td><td> <?= $getData['mission'] ;?></td></tr> 
            <tr><td>Code name: </td><td>  <?= $getData['codeName'] ;?></td></tr> 
            <tr><td>target: </td><td>  <?= $getData['target'] ;?></td></tr> 
-           <tr><td>agent: </td><td>  <?= $getData['agent'] ;?></td></tr> 
+           <tr><td>agent: </td><td>  <?php for ($i = 0 ; $i < count($getData['agent']) ; $i++){
+              echo $getData['agent'][$i]['callsign'] .', ';}; ?></td></tr> 
            <tr><td>description: </td><td>  <?= $getData['desc'] ;?></td></tr> 
            <tr><td>type: </td><td>  <?= $getData['type'] ;?></td></tr> 
            <tr><td>contact: </td><td>  <?= $getData['contact'] ;?></td></tr> 

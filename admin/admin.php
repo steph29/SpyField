@@ -116,7 +116,7 @@ include('../elements/status.php');
         $i = 0;
         foreach ($fetchData as $key => $row) {
             ?>
-      <option name="<?= $row['NOM'] ; ?>" > <?= $row['NOM'] ; ?> </option>
+      <option name="<?= $row['name'] ; ?>" > <?= $row['name'] ; ?> </option>
 
       <?php
         }

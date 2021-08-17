@@ -6,37 +6,15 @@ function readMission(variable) {
     "selectMission",
     { mission: variable },
     function (data) {
-      // $(".res").html(data);
-      const resData = data.json();
-      console.log(resData);
-      resData
-        .then((dataJson) => {
-          console.log(dataJson);
-        })
-        .html(data);
+      $(".res").html(data);
     },
-    "json"
+    "text"
   );
-}
-// l'idée est d'utiliser une api json pour acceder aux données de la base et l'exploiter sur le site
-
-function testData() {
-  // faire une methode post avec fetch
-  fetch(
-    "https://spyfield-b2064-default-rtdb.europe-west1.firebasedatabase.app.json"
-  )
-    .then((res) => {
-      const resData = res.json();
-      resData.then((dataJson) => {
-        console.log(dataJson);
-      });
-    })
-    .catch((error) => console.log("Error : " + error));
 }
 
 mission.addEventListener("click", function () {
   var missionValue = $(this).val();
-  testData();
+  readMission(missionValue);
 });
 
 // Script pour la carte dans la page mission
