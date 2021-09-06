@@ -128,7 +128,9 @@ include('../elements/status.php');
 <!-- end of first col -->
 <!-- second col -->
         <div class="col">
-        <div class="form-group my-3">
+               <div class="col form-group my-3 ">
+        <!-- Faire une boucle "tant que value == Select your contact" -> laisser, sinon faire apparaite un nouveau select -->
+
                 <label class="col-form-label">Contact</label>
                 <select name="contact" class="form-control text-center linked-select" id="contact">
         <option >Select your contact</option>
@@ -147,14 +149,13 @@ include('../elements/status.php');
     }
 }
 ?>
-    </select>
-                <div id="newSelect" style="display: none">
-            <select name="contact" class="form-control text-center" id="contact">
-        <option >Select your contact</option>
-     <?php include('selectContact')?>
-    </select>
+</select>
+<div >
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelect" >+</a>
 </div>
-        </div>
+
+            </div>
+        
         <div class="form-group my-3">
           <label class="col-form-label">Type of mission </label>
           <input type="text" class="form-control" name="type"/>

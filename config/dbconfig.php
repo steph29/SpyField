@@ -11,4 +11,5 @@ $factory = (new Factory)->withServiceAccount('/Users/stephaneverardo/SpyField/co
 
     $database = $factory->createDatabase();
     $auth = $factory->createAuth();
+ 
 ?>

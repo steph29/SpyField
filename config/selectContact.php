@@ -8,7 +8,7 @@ if (isset($_POST['contact'])) {
 
     if ($getData > 0) {
         $i = 0;
-        foreach ($fetchData as $key => $row) {
+        foreach ($getData as $key => $row) {
             ?>
       <option name="<?= $row['callsign'] ; ?>" class= "form-control text-center"> <?= $row['callsign'] ; ?> </option>
     <?php

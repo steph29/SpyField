@@ -18,20 +18,25 @@ $country = $_POST['country'];
 $target = $_POST['target'];
 $agent = $_POST['agent'];
 
+$arrayAgent = [$agent];
+$arrayTarget = [ $target];
+$arrayContact = [ $contact];
+$arrayHideouts = [ $hideouts];
+
 $postData = [
     'mission' => $mission,
     'codeName' => $codeName,
     'desc' => $desc,
     'type' => $type,
-    'contact' => $contact,
+    'contact' => $arrayContact,
     'status' => $status,
-    'hideouts' => $hideouts,
+    'hideouts' => $arrayHideouts,
     'specialities' => $specialities,
     'startDate' => $startDate,
     'endDate' => $endDate,
     'country' => $country,
-    'target' => $target,
-    'agent' => $agent,
+    'target' => $arrayTarget,
+    'agent' => $arrayAgent,
     
 ];
 

@@ -152,6 +152,11 @@ img {
   color: white;
 }
 
+.circle {
+  height: 30px;
+  width: auto;
+}
+
 #newSelect {
   height: 60px;
 }

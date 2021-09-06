@@ -26,7 +26,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
                                         $i = 0;
                                         foreach ($fetchData as $key => $row) {
                                             ?>
-                                    <option value= "<?= $key; ?>"> <?= $row['mission'] ; ?> </option>
+                                    <option value= "<?= $key; ?>" name="<?= $row['mission']?>"> <?= $row['mission'] ; ?> </option>
                             <?php
                                 }
                             }
@@ -46,6 +46,9 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
                 <div class="card-body">
                     <!-- Tableau récap de la mission -->
                     <div class="res"></div>
+                    <div class="map">
+                        <!-- coord map -->
+                    </div>
                 </div>
         </section>
 </div>
