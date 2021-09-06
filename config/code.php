@@ -14,7 +14,7 @@ $hideouts= $_POST['hideouts'];
 $specialities= $_POST['specialities'];
 $startDate= $_POST['startDate'];
 $endDate= $_POST['endDate'];
-$country = $_POST['country'];
+$country_key = $_POST['country'];
 $target = $_POST['target'];
 $agent = $_POST['agent'];
 
@@ -22,6 +22,8 @@ $arrayAgent = [$agent];
 $arrayTarget = [ $target];
 $arrayContact = [ $contact];
 $arrayHideouts = [ $hideouts];
+
+
 
 $postData = [
     'mission' => $mission,
@@ -34,7 +36,7 @@ $postData = [
     'specialities' => $specialities,
     'startDate' => $startDate,
     'endDate' => $endDate,
-    'country' => $country,
+    'countryId' => $country_key,
     'target' => $arrayTarget,
     'agent' => $arrayAgent,
     
