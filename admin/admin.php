@@ -106,17 +106,17 @@ include('../elements/status.php');
         </div>
     <div class="form-group my-3">
           <label class="col-form-label">Country</label>
-                <select name="country" class="form-control text-center linked-select">
+                <select name="country" id="country" class="form-control text-center linked-select">
         <option >Select the country</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'countries/';
-    $fetchData = $database->getReference($ref_table)->getValue();
+    $fetchDataCountry = $database->getReference($ref_table)->getValue();
 
-    if ($fetchData > 0) {
+    if ($fetchDataCountry > 0) {
         $i = 0;
-        foreach ($fetchData as $key => $row) {
+        foreach ($fetchDataCountry as $key => $row) {
             ?>
-      <option name="<?= $key ; ?>"  value="<?= $key?>"> <?= $row['name'] ; ?> </option>
+      <option name="<?= $key ; ?>"  value="<?= $key; ?>"> <?= $row['name'] ; ?> </option>
 
       <?php
         }
@@ -182,7 +182,9 @@ include('../elements/status.php');
 </div>
         <div class="form-group my-3">
             <label class="col-form-label">Hideouts </label>
-            <input type="adress" class="form-control" name="hideouts"/>
+            <select name="hideouts" class="form-control text-center linked-select" id="hideouts">
+        <option >Select your hideouts</option>
+     </select>
         </div>
         <div class="form-group my-3">
             <label class="col-form-label">Specialyties </label>

@@ -28,3 +28,27 @@ addContact.addEventListener("click", function () {
   select.setAttribute("class", "my-3");
   select.style.display = "block";
 });
+
+var country = document.getElementById("country");
+var hideouts = document.getElementById("hideouts");
+
+function checkRules(country) {
+  $.post(
+    "rules",
+    { country: country },
+    function (data) {
+      console.log(data);
+      $("#hideouts").empty();
+      var opt = document.createElement("option");
+      opt.value = data["capital"];
+      opt.innerHTML = data["capital"];
+      hideouts.appendChild(opt);
+    },
+    "json"
+  );
+}
+
+country.addEventListener("click", function () {
+  var countryValue = $(this).val();
+  checkRules(countryValue);
+});
