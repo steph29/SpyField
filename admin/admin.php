@@ -74,37 +74,6 @@ include('../elements/status.php');
           <input type="text" class="form-control" name="mission"/>
         </div>
         <div class="form-group my-3">
-            <label class="col-form-label">Code Name</label>
-            <input type="text" class="form-control" name="codeName"/>
-        </div>
-        <div class="form-group my-3">
-        <label class="col-form-label">Agent </label>
-        <select name="agent" class="form-control text-center linked-select">
-        <option >Select your Agent</option>
-     <?php $ref_table = "agent/";
-    $fetchData = $database->getReference($ref_table)->getValue();
-
-    if ($fetchData > 0) {
-        $i = 0;
-        foreach ($fetchData as $key => $row) {
-            ?>
-      <option name="<?= $row['callsign'] ; ?>" > <?= $row["callsign"] ; ?> </option>
-
-      <?php
-        }
-    };?>
-    </select>
-        </div>
-        <div class="form-group my-3">
-            <label class="col-form-label">Target </label>
-            <input type="text" class="form-control" name="target"/>
-        </div>
-
-    <div class="form-group my-3">
-          <label class="col-form-label">Description </label>
-    <textarea type="text" cols="10" rows="5" name="desc"></textarea>
-        </div>
-    <div class="form-group my-3">
           <label class="col-form-label">Country</label>
                 <select name="country" id="country" class="form-control text-center linked-select">
         <option >Select the country</option>
@@ -124,6 +93,41 @@ include('../elements/status.php');
      ?>
                 </select>
     </div>
+        <div class="form-group my-3">
+            <label class="col-form-label">Code Name</label>
+            <input type="text" class="form-control" name="codeName"/>
+        </div>
+         <div class="form-group my-3">
+            <label class="col-form-label">Target </label>
+   <select name="target" id="target" class="form-control text-center linked-select">
+        <option >Select your Target</option>
+     <?php $ref_table = "target/";
+    $fetchData = $database->getReference($ref_table)->getValue();
+
+    if ($fetchData > 0) {
+        $i = 0;
+        foreach ($fetchData as $key => $row) {
+            ?>
+      <option name="<?= $row['callsign'] ; ?>"  value="<?= $key ;?>"> <?= $row["callsign"] ; ?> </option>
+
+      <?php
+        }
+    };?>
+    </select>
+        </div>
+
+        <div class="form-group my-3">
+        <label class="col-form-label">Agent </label>
+        <select name="agent" id="agent" class="form-control text-center linked-select">
+        <option >Select your Agent</option>
+    </select>
+        </div>
+       
+    <div class="form-group my-3">
+          <label class="col-form-label">Description </label>
+    <textarea type="text" cols="10" rows="5" name="desc"></textarea>
+        </div>
+    
 </div> 
 <!-- end of first col -->
 <!-- second col -->

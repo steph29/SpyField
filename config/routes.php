@@ -13,6 +13,7 @@ $router-> map('GET|POST', '/selectContact', 'config/selectContact', 'selectConta
 $router-> map('GET|POST', '/mapCoord', 'config/mapCoord', 'mapCoord' );
 $router-> map('GET|POST', '/rules', 'config/rules', 'rules' );
 
+
 // Router image
 
 // Router website
