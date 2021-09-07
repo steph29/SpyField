@@ -8,11 +8,20 @@ if(isset($_POST['country'])){
     $ref_table = "countries/".$country_key;
     $dataCountryCapital = $database->getReference($ref_table)->getValue();
 
-    if($dataCountryCapital > 0){
-        $arrayCapital = array('capital' => $dataCountryCapital['capital']);
-     echo json_encode( $arrayCapital );
+    $ref_table_contact = "contact/";
+    $dataContact = $database->getReference($ref_table_contact)->getValue();
 
+    $array = array();
+    if($dataCountryCapital > 0){
+        array_push($array, $dataCountryCapital['capital']);
+    foreach ($dataContact as $key => $value) {
+       if($country_key == $value['nationalityId']){
+        array_push($array, $value['callsign']);
+       }
     }
+    echo json_encode( $array );
+    }
+   
 exit();
 }
 
@@ -38,9 +47,14 @@ elseif (isset($_POST['target'])){
     exit();
 }
 // Contact de la meme nationalité que le pays de la mission
-if(isset($_POST[''])){
+// elseif (isset($_POST['contact'])){
+//     $contact_key = $_POST['contact'];
+//     $ref_table = "contact/".$contact_key;
+//     $dataContact = $database->getReference($ref_table)->getValue();
+//     echo json_encode( $dataContact[ 'nationalityId'] ); 
+//     }
+//     exit();
 
-}
 
 // Spécialité requise de l'agent pour la mission
 if(isset($_POST[''])){

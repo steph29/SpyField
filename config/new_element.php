@@ -8,7 +8,7 @@ if (isset($_POST['add_agent'])) {
     $fname = $_POST['firstname'];
     $birthday = $_POST['birthday'];
     $callsign = $_POST['callsign'];
-    $nationality = $_POST['nationality'];
+    $nationalityId = $_POST['nationality'];
     $specialities = $_POST['specialities'];
 
     $agentData = [
@@ -16,7 +16,7 @@ if (isset($_POST['add_agent'])) {
         'fname' => $fname,
         'birthday' => $birthday,
         'callsign' => $callsign,
-        'nationality' => $nationality,
+        'nationalityId' => $nationalityId,
         'specialities' => $specialities
     ];
         
@@ -46,8 +46,7 @@ if (isset($_POST['add_agent'])) {
             header('Location: admin');
         }
         } 
-
-
+        
         elseif ($choice == "target") {
         $ref_table = 'target/';
         $target_result = $database->getReference($ref_table)->push($agentData);

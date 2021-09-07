@@ -45,7 +45,23 @@ session_start();
 </div>
 <div class="form-group mb-3">
 <label for="">Nationality</label>
-<input type="text" name="nationality" class="form-control">
+<select name="nationality" id="nationality" class="form-control text-center linked-select">
+        <option >Select the country</option>
+     <?php include("../config/dbconfig.php");
+    $ref_table = 'countries/';
+    $fetchDataCountry = $database->getReference($ref_table)->getValue();
+
+    if ($fetchDataCountry > 0) {
+        $i = 0;
+        foreach ($fetchDataCountry as $key => $row) {
+            ?>
+      <option name="<?= $key ; ?>"  value="<?= $key; ?>"> <?= $row['name'] ; ?> </option>
+
+      <?php
+        }
+    }
+     ?>
+                </select>
 </div>
 <div class="form-group mb-3">
 <label for="">Speciality</label>

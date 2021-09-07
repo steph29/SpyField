@@ -136,7 +136,7 @@ include('../elements/status.php');
         <!-- Faire une boucle "tant que value == Select your contact" -> laisser, sinon faire apparaite un nouveau select -->
 
                 <label class="col-form-label">Contact</label>
-                <select name="contact" class="form-control text-center linked-select" id="contact">
+                <select name="contact" id="contact" class="form-control text-center linked-select" >
         <option >Select your contact</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'contact/';
@@ -146,7 +146,7 @@ include('../elements/status.php');
         $i = 0;
         foreach ($fetchData as $key => $row) {
             ?>
-      <option name="<?= $row['callsign'] ; ?>" > <?= $row['callsign'] ; ?> </option>
+      <option name="<?= $row['callsign'] ; ?>" value="<?= $key ?>"> <?= $row['callsign'] ; ?> </option>
             
       <?php
       
