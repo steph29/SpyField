@@ -18,6 +18,18 @@ if(isset($_POST['delete'])){
          $_SESSION['status'] = "Mission not deleted";
         header('Location: admin');
     }
+
+    $ref_table_agent = "agent".$del_id;
+    $deleteQueryContact = $database->getReference($ref_table)->remove();
+
+    if($deleteQueryContact){
+
+        $_SESSION['status'] = "Agent deleted";
+        header('Location: admin');
+    }else{
+         $_SESSION['status'] = "Agent not deleted";
+        header('Location: admin');
+    }
 }
 
 

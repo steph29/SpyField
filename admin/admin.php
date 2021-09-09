@@ -4,8 +4,8 @@ $pageTitle = "Admin dasboard";
 $pageDesc = "Ajouter, supprimer, modiifer, faites plaisir! C'est ici!"; 
 include('../elements/status.php'); 
 ?>
-
-<div>
+<div class="row">
+    <div class="col col-6"> 
     <section class="container d-flex justify-content-center">
         <table class="">
             <thead>
@@ -58,6 +58,64 @@ include('../elements/status.php');
             </tbody>
         </table>
     </section>
+</div>
+
+
+<div class="col col-6">
+    <section class="container d-flex justify-content-center">
+        <table class="">
+            <thead>
+                <th class="col-md-8">Agent </th>
+                <th class="col-auto"> edit</th>
+                <th class="col-auto">Delete</th>
+            </thead>
+            <tbody>
+                <?= 
+                            include("../config/dbconfig.php");
+
+                            $ref_table = 'agent/';
+                            $fetchDataAgent = $database->getReference($ref_table)->getValue();
+
+                            if($fetchDataAgent > 0){
+                                $i = 0;
+                                
+                                foreach ($fetchDataAgent as $key => $row) {
+                                    ?>
+                                        <tr>
+                                            <td> <?= $row['callsign'] ;?></td>
+                                            <?php 
+                                            if(isset($_SESSION[ 'verified_user_id'])): 
+                                            ?>
+                                            <td> <a href="/add?id=<?= $key ;?>" class="btn btn-outline-success btn-sm ">
+                                            <img src="/assets/write.png" alt="">
+                                        </a></td>
+                                            <td>
+                                                <form action="<?= $router->generate('delete')?>" method="post">
+                                                    <button type="submit" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">
+                                                <img src="/assets/bin.png" alt="">
+                                                </button>
+                                                </form>
+                                            </td>
+                                            <?php endif;?>
+                                        </tr>
+                                    <?php 
+                                }
+
+                            } else {
+
+                                ?>
+
+                                <tr>
+                                    <td colspan=  "2"> No record Found</td>
+                                </tr>
+                                <?php 
+                            }
+                            ?>
+            </tbody>
+        </table>
+    </section>
+</div>
+
 </div>
 
 <!-- First section -> create a mission -->
@@ -115,8 +173,28 @@ include('../elements/status.php');
     };?>
     </select>
         </div>
+<div class="form-group my-3">
+            <label class="col-form-label">Specialities </label>
+           <select name="specialities" class="form-control text-center linked-select" id="specialities">
+               <option >Select your Specialities</option>
+       <?php include("../config/dbconfig.php");
+    $ref_table = 'specialities/';
+    $fetchData = $database->getReference($ref_table)->getValue();
 
+    if ($fetchData > 0) {
+        $i = 0;
+        foreach ($fetchData as $key => $row) {
+            ?>
+      <option name="<?= $row['name'] ; ?>" value="<?= $key ;?>"> <?= $row['name'] ; ?> </option>
+
+      <?php
+        }
+    }
+     ?>
+     </select>
+        </div>
         <div class="form-group my-3">
+        <div class="alertAgent col-md-12 justify-content-center align-items-center d-flex" id="alertAgent"></div>
         <label class="col-form-label">Agent </label>
         <select name="agent" id="agent" class="form-control text-center linked-select">
         <option >Select your Agent</option>
@@ -133,8 +211,7 @@ include('../elements/status.php');
 <!-- second col -->
         <div class="col">
                <div class="col form-group my-3 ">
-        <!-- Faire une boucle "tant que value == Select your contact" -> laisser, sinon faire apparaite un nouveau select -->
-
+                <div class="alertContact col-md-12 justify-content-center align-items-center d-flex" id="alertContact"></div>
                 <label class="col-form-label">Contact</label>
                 <select name="contact" id="contact" class="form-control text-center linked-select" >
         <option >Select your contact</option>
@@ -162,7 +239,25 @@ include('../elements/status.php');
         
         <div class="form-group my-3">
           <label class="col-form-label">Type of mission </label>
-          <input type="text" class="form-control" name="type"/>
+          <select name="type" class="form-control text-center linked-select" id="type">
+        <option >Select your Type of mission</option>
+         
+          <?php include("../config/dbconfig.php");
+    $ref_table = 'type/';
+    $fetchData = $database->getReference($ref_table)->getValue();
+
+    if ($fetchData > 0) {
+        $i = 0;
+        foreach ($fetchData as $key => $row) {
+            ?>
+      <option name="<?= $row['name'] ; ?>" value="<?= $key ?>"> <?= $row['name'] ; ?> </option>
+            
+      <?php
+      
+    }
+}
+?>
+</select>
         </div>
         <div class="form-group my-3">
           <label class="col-form-label">Status </label>
@@ -190,10 +285,7 @@ include('../elements/status.php');
         <option >Select your hideouts</option>
      </select>
         </div>
-        <div class="form-group my-3">
-            <label class="col-form-label">Specialyties </label>
-            <input type="text" class="form-control" name="specialities"/>
-        </div>
+        
         <div class="form-group my-3">
             <label class="col-form-label">Date of beginning </label>
             <input type="date" class="form-control" name="startDate"/>

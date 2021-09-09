@@ -65,7 +65,23 @@ session_start();
 </div>
 <div class="form-group mb-3">
 <label for="">Speciality</label>
-<input type="text" name="specialities" class="form-control">
+<select name="speciality" id="speciality" class="form-control text-center linked-select">
+        <option >Select the Specialities</option>
+     <?php include("../config/dbconfig.php");
+    $ref_table = 'specialities/';
+    $fetchDataSpecialities  = $database->getReference($ref_table)->getValue();
+
+    if ($fetchDataSpecialities  > 0) {
+        $i = 0;
+        foreach ($fetchDataSpecialities as $key => $row) {
+            ?>
+      <option name="<?= $key ; ?>"  value="<?= $key; ?>"> <?= $row['name'] ; ?> </option>
+
+      <?php
+        }
+    }
+     ?>
+                </select>
 </div>
 <div class="form-group mb-3">
 <button type="submit" name="add_agent" class="btn btn-outline-success">Add </button>

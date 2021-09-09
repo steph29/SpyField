@@ -9,7 +9,9 @@ if (isset($_POST['add_agent'])) {
     $birthday = $_POST['birthday'];
     $callsign = $_POST['callsign'];
     $nationalityId = $_POST['nationality'];
-    $specialities = $_POST['specialities'];
+    $specialities = $_POST['speciality'];
+
+    $arraySpecialities = [$specialities ];
 
     $agentData = [
         'lname' => $lname,
@@ -17,7 +19,7 @@ if (isset($_POST['add_agent'])) {
         'birthday' => $birthday,
         'callsign' => $callsign,
         'nationalityId' => $nationalityId,
-        'specialities' => $specialities
+        'specialities' => $arraySpecialities
     ];
         
     

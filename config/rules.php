@@ -3,6 +3,10 @@ session_start();
 include('dbconfig.php') ;
 
 // compatibilté de planques avec le pays de la mission
+    $arrayCountry= array();
+    $arrayTargetNationality = array();
+    $arraySpe = array();
+
 if(isset($_POST['country'])){
     $country_key = $_POST['country'];
     $ref_table = "countries/".$country_key;
@@ -11,17 +15,15 @@ if(isset($_POST['country'])){
     $ref_table_contact = "contact/";
     $dataContact = $database->getReference($ref_table_contact)->getValue();
 
-    $array = array();
     if($dataCountryCapital > 0){
-        array_push($array, $dataCountryCapital['capital']);
+        array_push($arrayCountry, $dataCountryCapital['capital']);
     foreach ($dataContact as $key => $value) {
        if($country_key == $value['nationalityId']){
-        array_push($array, $value['callsign']);
+        array_push($arrayCountry, $value['callsign']);
        }
     }
-    echo json_encode( $array );
+    echo json_encode( $arrayCountry);
     }
-   
 exit();
 }
 
@@ -35,30 +37,36 @@ elseif (isset($_POST['target'])){
     $ref_table_agent = "agent/";
     $dataAgent = $database->getReference($ref_table_agent)->getValue();
 
-    $arrayTargetNationailty = array();
     if($dataTarget > 0 || $dataAgent > 0){
         foreach ($dataAgent as $key => $value) {
-            if($dataTarget['nationality'] !=  $value['nationality']){
-            array_push($arrayTargetNationailty, $value['callsign']);
+            if($dataTarget['nationalityId'] !=  $value['nationalityId']){
+            array_push($arrayTargetNationality, $value['callsign']);
         }
     }
-    echo json_encode( $arrayTargetNationailty );   
+    echo json_encode( $arrayTargetNationality );   
     }
     exit();
 }
-// Contact de la meme nationalité que le pays de la mission
-// elseif (isset($_POST['contact'])){
-//     $contact_key = $_POST['contact'];
-//     $ref_table = "contact/".$contact_key;
-//     $dataContact = $database->getReference($ref_table)->getValue();
-//     echo json_encode( $dataContact[ 'nationalityId'] ); 
-//     }
-//     exit();
-
 
 // Spécialité requise de l'agent pour la mission
-if(isset($_POST[''])){
-    
-}
 
+elseif (isset($_POST['specialities'])) {
+    $spe_key = $_POST['specialities'];
+    $ref_table_spe = "specialities/".$spe_key;
+    $dataSpe = $database->getReference($ref_table_spe)->getValue();
+
+    $ref_table_agent = "agent/";
+    $dataAgentSpe = $database->getReference($ref_table_agent)->getValue();
+
+    if($dataSpe > 0){
+        array_push($arraySpe, $spe_key)  ;
+        foreach ($dataAgentSpe as $key => $value) {
+            if($spe_key == $value['specialities'][0]){
+                array_push($arraySpe, $value['callsign']);
+            }
+        }
+    echo json_encode( $arraySpe );
+    }
+    exit();
+}
 ?>

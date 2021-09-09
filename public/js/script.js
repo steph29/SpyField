@@ -36,9 +36,11 @@ mission.addEventListener("click", function () {
 });
 
 // Script pour la carte dans la page mission
+var mymap = L.map("mapid");
 
 function map(lat, lon, name) {
-  var mymap = L.map("mapid").setView([lat, lon], 10);
+  mymap.setView([lat, lon], 10);
+
   L.tileLayer(
     "https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=3e3ba58c8f764deda2f5b9bc0f25999b",
     {
