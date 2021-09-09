@@ -143,7 +143,7 @@ include('../elements/status.php');
         $i = 0;
         foreach ($fetchDataCountry as $key => $row) {
             ?>
-      <option name="<?= $key ; ?>"  value="<?= $key; ?>"> <?= $row['name'] ; ?> </option>
+      <option name="<?= $row['name'] ; ?>"  value="<?= $key; ?>"> <?= $row['name'] ; ?> </option>
 
       <?php
         }
