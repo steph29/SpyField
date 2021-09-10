@@ -172,6 +172,10 @@ include('../elements/status.php');
         }
     };?>
     </select>
+    <div class="newSelectTarget"></div>
+<div >
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelectTarget" >+</a>
+</div>
         </div>
 <div class="form-group my-3">
             <label class="col-form-label">Specialities </label>
@@ -199,6 +203,10 @@ include('../elements/status.php');
         <select name="agent" id="agent" class="form-control text-center linked-select">
         <option >Select your Agent</option>
     </select>
+    <div class="newSelectAgent"></div>
+<div >
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelectAgent" >+</a>
+</div>
         </div>
        
     <div class="form-group my-3">
@@ -231,8 +239,9 @@ include('../elements/status.php');
 }
 ?>
 </select>
+<div class="newSelectContact"></div>
 <div >
-    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelect" >+</a>
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelectContact" >+</a>
 </div>
 
             </div>
@@ -284,6 +293,10 @@ include('../elements/status.php');
             <select name="hideouts" class="form-control text-center linked-select" id="hideouts">
         <option >Select your hideouts</option>
      </select>
+     <div class="newSelectHideouts"></div>
+<div >
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelectHideouts" >+</a>
+</div>
         </div>
         
         <div class="form-group my-3">

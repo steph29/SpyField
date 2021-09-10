@@ -6,6 +6,7 @@ include('dbconfig.php') ;
     $arrayCountry= array();
     $arrayTargetNationality = array();
     $arraySpe = array();
+    $arrayTarget = array();
 
 if(isset($_POST['country'])){
     $country_key = $_POST['country'];
@@ -37,7 +38,9 @@ elseif (isset($_POST['target'])){
     $ref_table_agent = "agent/";
     $dataAgent = $database->getReference($ref_table_agent)->getValue();
 
+
     if($dataTarget > 0 || $dataAgent > 0){
+        array_push($arrayTarget, $dataTarget['callsign']);
         foreach ($dataAgent as $key => $value) {
             if($dataTarget['nationalityId'] !=  $value['nationalityId']){
             array_push($arrayTargetNationality, $value['callsign']);
@@ -69,4 +72,5 @@ elseif (isset($_POST['specialities'])) {
     }
     exit();
 }
+
 ?>

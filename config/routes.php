@@ -12,6 +12,7 @@ $router-> map('GET|POST', '/selectMission', 'config/selectMission', 'selectMissi
 $router-> map('GET|POST', '/selectContact', 'config/selectContact', 'selectContact' );
 $router-> map('GET|POST', '/mapCoord', 'config/mapCoord', 'mapCoord' );
 $router-> map('GET|POST', '/rules', 'config/rules', 'rules' );
+$router-> map('GET|POST', '/targetList', 'config/targetList', 'targetList' );
 
 
 // Router image
