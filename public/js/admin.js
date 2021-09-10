@@ -6,11 +6,11 @@ var addHideouts = document.getElementById("addSelectHideouts");
 
 function addButton(liste, divContent) {
   var select = document.createElement("select");
-  console.log(liste);
   for (var i = 0; i < liste.length; i++) {
     var opt = new Option(liste[i]);
     select.options[select.options.length] = opt;
     select.setAttribute("class", "my-3 form-control text-center linked-select");
+    opt.setAttribute("name", "target[]");
     select.style.display = "block";
     $(divContent).append(select);
   }

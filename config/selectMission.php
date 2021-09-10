@@ -2,6 +2,7 @@
 session_start();
 include('dbconfig.php');
 
+$targetNameArray = [];
 if (isset($_POST['mission'])) {
    $key_child = $_POST['mission'];
 
@@ -24,7 +25,6 @@ if (isset($_POST['mission'])) {
        foreach ($getTargetData as $key => $value) {
           for ($i = 0 ; $i < count($getData['target']); $i++){
              if($getData['target'][$i] == $key){
-         $targetNameArray = [ ];
           array_push($targetNameArray, $value['callsign']) ;
       }
           }

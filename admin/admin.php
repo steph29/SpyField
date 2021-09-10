@@ -157,20 +157,23 @@ include('../elements/status.php');
         </div>
          <div class="form-group my-3">
             <label class="col-form-label">Target </label>
-   <select name="target" id="target" class="form-control text-center linked-select">
+   <select name="target[]" id="target" class="form-control text-center linked-select">
         <option >Select your Target</option>
      <?php $ref_table = "target/";
     $fetchData = $database->getReference($ref_table)->getValue();
-
+        $arrayTargets = [];
     if ($fetchData > 0) {
         $i = 0;
         foreach ($fetchData as $key => $row) {
+            array_push($arrayTargets, $key);
             ?>
-      <option name="<?= $row['callsign'] ; ?>"  value="<?= $key ;?>"> <?= $row["callsign"] ; ?> </option>
+      <option name="<?= $row['callsign'] ; ?>"  value="<?= $key ;?>" > <?= $row["callsign"] ; ?> </option>
 
       <?php
         }
-    };?>
+    };
+    $_SESSION['arrayTarget'] = $arrayTargets;
+    ?>
     </select>
     <div class="newSelectTarget"></div>
 <div >

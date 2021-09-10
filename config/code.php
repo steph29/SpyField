@@ -2,6 +2,12 @@
 session_start();
 include('dbconfig.php') ;
 
+if(isset($_SESSION['arrayTarget'])){
+    $arrayTargetSession = $_SESSION['arrayTarget'];
+   echo json_encode($arrayTargetSession);
+
+}
+
 if(isset($_POST['add_mission'])){
 
 $mission = $_POST['mission'];
@@ -17,6 +23,7 @@ $endDate= $_POST['endDate'];
 $country_key = $_POST['country'];
 $target = $_POST['target'];
 $agent = $_POST['agent'];
+
 
 $arrayAgent = [$agent];
 $arrayTarget = [ $target];
@@ -53,6 +60,7 @@ $postRef = $database->getReference($ref_table)->push($postData);
          $_SESSION['status'] = "Mission uncreated. Something were wrong ";
         header('Location: admin');
     }
+    echo json_encode($postData);
 
 }
 
