@@ -20,7 +20,7 @@ if(isset($_POST['country'])){
         array_push($arrayCountry, $dataCountryCapital['capital']);
     foreach ($dataContact as $key => $value) {
        if($country_key == $value['nationalityId']){
-        array_push($arrayCountry, $value['callsign']);
+        array_push($arrayCountry, $value['callsign'], $key);
        }
     }
     echo json_encode( $arrayCountry);
@@ -43,7 +43,7 @@ elseif (isset($_POST['target'])){
         array_push($arrayTarget, $dataTarget['callsign']);
         foreach ($dataAgent as $key => $value) {
             if($dataTarget['nationalityId'] !=  $value['nationalityId']){
-            array_push($arrayTargetNationality, $value['callsign']);
+            array_push($arrayTargetNationality, $value['callsign'], $key);
         }
     }
     echo json_encode( $arrayTargetNationality );   
@@ -65,7 +65,7 @@ elseif (isset($_POST['specialities'])) {
         array_push($arraySpe, $spe_key)  ;
         foreach ($dataAgentSpe as $key => $value) {
             if($spe_key == $value['specialities'][0]){
-                array_push($arraySpe, $value['callsign']);
+                array_push($arraySpe, $value['callsign'], $key);
             }
         }
     echo json_encode( $arraySpe );

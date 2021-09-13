@@ -4,41 +4,56 @@ var addAgent = document.getElementById("addSelectAgent");
 var addTarget = document.getElementById("addSelectTarget");
 var addHideouts = document.getElementById("addSelectHideouts");
 
-function addButton(liste, divContent, keyList) {
+// Functions for element displaying
+function displayOptions(cell, element, index) {
+  var opt = document.createElement("option");
+  opt.setAttribute("value", index);
+  console.log(index);
+  opt.innerHTML = element;
+  cell.appendChild(opt);
+}
+
+function alertContent(divContent, text) {
+  al.setAttribute("class", "alert alert-danger");
+  al.innerHTML = `Sorry, we haven't this man ${text}. If you know one, please add him. `;
+  $(divContent).append(al);
+}
+
+function displayNewSelect(liste, divContent, keyList, selectName) {
   var select = document.createElement("select");
   for (var i = 0; i < liste.length; i++) {
     var opt = new Option(liste[i]);
     select.options[select.options.length] = opt;
     select.setAttribute("class", "my-3 form-control text-center linked-select");
-    select.setAttribute("name", "target[]");
-    console.log(keyList);
-    console.log(liste);
-    keyList.forEach((element) => {
-      console.log(element);
-      opt.setAttribute("value", element);
-    });
+    select.setAttribute("name", selectName);
+    opt.setAttribute("value", keyList[i]);
     select.style.display = "block";
     $(divContent).append(select);
   }
 }
 
+// functions
 addContact.addEventListener("click", function () {
-  addButton(contactList, ".newSelectContact");
+  displayNewSelect(
+    contactList,
+    ".newSelectContact",
+    keycontactList,
+    "contact[]"
+  );
 });
 addAgent.addEventListener("click", function () {
-  addButton(agentArray, ".newSelectAgent");
+  displayNewSelect(agentArray, ".newSelectAgent", keyAgentList, "agent[]");
 });
 addTarget.addEventListener("click", function () {
-  addButton(targetList, ".newSelectTarget", keyTargetList);
+  displayNewSelect(targetList, ".newSelectTarget", keyTargetList, "target[]");
 });
 addHideouts.addEventListener("click", function () {
-  addButton(hideoutsList, ".newSelectHideouts");
+  displayNewSelect(hideoutsList, ".newSelectHideouts", "", "hideouts[]");
 });
 
 // ---------------------------------------------------------- //
 
 // Règles métier
-
 // constantes et variables
 const country = document.getElementById("country");
 const hideouts = document.getElementById("hideouts");
@@ -53,22 +68,11 @@ var contactList = [];
 var hideoutsList = [];
 var targetList = [];
 var keyTargetList = [];
+var keyAgentList = [];
+var keycontactList = [];
+var keyCountryList = [];
 var array = [];
 var agentArray = [];
-
-// Functions for element displaying
-function elementHTML(cell, element) {
-  var opt = document.createElement("option");
-  opt.value = element;
-  opt.innerHTML = element;
-  cell.appendChild(opt);
-}
-
-function alertContent(divContent, text) {
-  al.setAttribute("class", "alert alert-danger");
-  al.innerHTML = `Sorry, we haven't this man ${text}. If you know one, please add him. `;
-  $(divContent).append(al);
-}
 
 // functions for checking rules
 function checkRulesCountry(country) {
@@ -76,25 +80,30 @@ function checkRulesCountry(country) {
     "rules",
     { country: country },
     function (data) {
+      console.log(data);
       $(hideouts).empty();
       $(contact).empty();
       $(alertContact).empty();
-      data.forEach((element) => {
-        if (data.length <= 1) {
-          alertContent(alertContact, "for this country");
-          elementHTML(hideouts, "");
-          elementHTML(hideouts, element);
+      for (var i = 0; i < data.length; i++) {
+        if (i % 2 == 0 && i != 0) {
+          keycontactList.push(data[i]);
         } else {
-          if (data.indexOf(element) != 0) {
-            elementHTML(contact, element);
-            contactList.push(element);
+          if (data.length <= 1) {
+            alertContent(alertContact, "for this country");
+            displayOptions(hideouts, "");
+            displayOptions(hideouts, data[i], data[i]);
           } else {
-            elementHTML(hideouts, "");
-            elementHTML(hideouts, element);
-            hideoutsList.push(element);
+            if (i != 0) {
+              displayOptions(contact, data[i], data[i + 1]);
+              contactList.push(data[i]);
+            } else {
+              displayOptions(hideouts, "");
+              displayOptions(hideouts, data[i], data[i]);
+              hideoutsList.push(data[i]);
+            }
           }
         }
-      });
+      }
     },
     "json"
   );
@@ -139,12 +148,18 @@ function checkRulesSpecialities(specialities) {
     "rules",
     { specialities: specialities },
     function (data) {
+      console.log(data);
       $(alertAgent).empty();
       $(agent).empty();
-      for (var i = 0; i < array.length; i++) {
+      for (var i = 0; i < data.length; i++) {
+        if (i % 2 == 0 && i != 0) {
+          keyAgentList.push(data[i]);
+        }
         if (data.includes(array[i])) {
-          elementHTML(agent, array[i]);
-          agentArray.push(array[i]);
+          if (i % 2 == 0) {
+            displayOptions(agent, array[i], array[i + 1]);
+            agentArray.push(array[i]);
+          }
         }
       }
       if (data.length <= 1) {

@@ -200,7 +200,7 @@ include('../elements/status.php');
         <div class="form-group my-3">
         <div class="alertAgent col-md-12 justify-content-center align-items-center d-flex" id="alertAgent"></div>
         <label class="col-form-label">Agent </label>
-        <select name="agent" id="agent" class="form-control text-center linked-select">
+        <select name="agent[]" id="agent" class="form-control text-center linked-select">
         <option >Select your Agent</option>
     </select>
     <div class="newSelectAgent"></div>
@@ -221,7 +221,7 @@ include('../elements/status.php');
                <div class="col form-group my-3 ">
                 <div class="alertContact col-md-12 justify-content-center align-items-center d-flex" id="alertContact"></div>
                 <label class="col-form-label">Contact</label>
-                <select name="contact" id="contact" class="form-control text-center linked-select" >
+                <select name="contact[]" id="contact" class="form-control text-center linked-select" >
         <option >Select your contact</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'contact/';
@@ -231,7 +231,7 @@ include('../elements/status.php');
         $i = 0;
         foreach ($fetchData as $key => $row) {
             ?>
-      <option name="<?= $row['callsign'] ; ?>" value="<?= $key ?>"> <?= $row['callsign'] ; ?> </option>
+      <option name="<?= $key ; ?>" value="<?= $key ?>"> <?= $row['callsign'] ; ?> </option>
             
       <?php
       
@@ -290,7 +290,7 @@ include('../elements/status.php');
 </div>
         <div class="form-group my-3">
             <label class="col-form-label">Hideouts </label>
-            <select name="hideouts" class="form-control text-center linked-select" id="hideouts">
+            <select name="hideouts[]" class="form-control text-center linked-select" id="hideouts">
         <option >Select your hideouts</option>
      </select>
      <div class="newSelectHideouts"></div>
