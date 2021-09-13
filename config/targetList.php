@@ -10,7 +10,7 @@ if(isset($_POST['target'])){
     if ($fetchData > 0) {
         $i = 0;
         foreach ($fetchData as $key => $row) {
-            array_push($arrayTarget, $row['callsign']);
+            array_push($arrayTarget, $row['callsign'] ,$key);
         }
         echo json_encode( $arrayTarget );
     };

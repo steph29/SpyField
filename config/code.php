@@ -2,12 +2,6 @@
 session_start();
 include('dbconfig.php') ;
 
-if(isset($_SESSION['arrayTarget'])){
-    $arrayTargetSession = $_SESSION['arrayTarget'];
-   echo json_encode($arrayTargetSession);
-
-}
-
 if(isset($_POST['add_mission'])){
 
 $mission = $_POST['mission'];
@@ -26,7 +20,6 @@ $agent = $_POST['agent'];
 
 
 $arrayAgent = [$agent];
-$arrayTarget = [ $target];
 $arrayContact = [ $contact];
 $arrayHideouts = [ $hideouts];
 
@@ -44,7 +37,7 @@ $postData = [
     'startDate' => $startDate,
     'endDate' => $endDate,
     'countryId' => $country_key,
-    'target' => $arrayTarget,
+    'target' => $target,
     'agent' => $arrayAgent,
     
 ];

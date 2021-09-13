@@ -161,18 +161,15 @@ include('../elements/status.php');
         <option >Select your Target</option>
      <?php $ref_table = "target/";
     $fetchData = $database->getReference($ref_table)->getValue();
-        $arrayTargets = [];
     if ($fetchData > 0) {
         $i = 0;
         foreach ($fetchData as $key => $row) {
-            array_push($arrayTargets, $key);
             ?>
-      <option name="<?= $row['callsign'] ; ?>"  value="<?= $key ;?>" > <?= $row["callsign"] ; ?> </option>
+      <option name="<?= $key ; ?>"  value="<?= $key ;?>" > <?= $row["callsign"] ; ?> </option>
 
       <?php
         }
     };
-    $_SESSION['arrayTarget'] = $arrayTargets;
     ?>
     </select>
     <div class="newSelectTarget"></div>

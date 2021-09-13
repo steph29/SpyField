@@ -4,13 +4,19 @@ var addAgent = document.getElementById("addSelectAgent");
 var addTarget = document.getElementById("addSelectTarget");
 var addHideouts = document.getElementById("addSelectHideouts");
 
-function addButton(liste, divContent) {
+function addButton(liste, divContent, keyList) {
   var select = document.createElement("select");
   for (var i = 0; i < liste.length; i++) {
     var opt = new Option(liste[i]);
     select.options[select.options.length] = opt;
     select.setAttribute("class", "my-3 form-control text-center linked-select");
-    opt.setAttribute("name", "target[]");
+    select.setAttribute("name", "target[]");
+    console.log(keyList);
+    console.log(liste);
+    keyList.forEach((element) => {
+      console.log(element);
+      opt.setAttribute("value", element);
+    });
     select.style.display = "block";
     $(divContent).append(select);
   }
@@ -23,7 +29,7 @@ addAgent.addEventListener("click", function () {
   addButton(agentArray, ".newSelectAgent");
 });
 addTarget.addEventListener("click", function () {
-  addButton(targetList, ".newSelectTarget");
+  addButton(targetList, ".newSelectTarget", keyTargetList);
 });
 addHideouts.addEventListener("click", function () {
   addButton(hideoutsList, ".newSelectHideouts");
@@ -46,6 +52,7 @@ var al = document.createElement("h5");
 var contactList = [];
 var hideoutsList = [];
 var targetList = [];
+var keyTargetList = [];
 var array = [];
 var agentArray = [];
 
@@ -97,9 +104,15 @@ function targetListDisplay(target) {
     "targetList",
     { target: target },
     function (data) {
-      data.forEach((element) => {
-        targetList.push(element);
-      });
+      targetList = [];
+      keyTargetList = [];
+      for (var i = 0; i < data.length; i++) {
+        if (i % 2 == 0) {
+          targetList.push(data[i]);
+        } else if (i % 2 == 1) {
+          keyTargetList.push(data[i]);
+        }
+      }
     },
     "json"
   );
