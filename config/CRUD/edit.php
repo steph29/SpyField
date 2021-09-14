@@ -190,7 +190,7 @@ if(isset($_GET['id'])){
         $i = 0;
         foreach ($fetchData as $key => $row) {
             ?>
-      <option name="<?= $row['name'] ; ?>" > <?= $row['name'] ; ?> </option>
+      <option name="<?= $row['state'] ; ?>" > <?= $row['state'] ; ?> </option>
 
       <?php
         }
