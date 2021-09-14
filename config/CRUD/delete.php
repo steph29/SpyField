@@ -22,12 +22,12 @@ if(isset($_POST['delete'])){
    
 }
 elseif (isset($_POST['delete_contact'])) {
-    $del_id = $_POST['delete_contact'];
+    $del_id = $_POST['id_delete_agent'];
     $ref_table_agent = "agent/".$del_id;
 
-    $deleteQueryContact = $database->getReference($ref_table)->remove();
+    $deleteAgent = $database->getReference($ref_table_agent)->remove();
 
-    if($deleteQueryContact){
+    if($deleteAgent){
 
         $_SESSION['status'] = "Agent deleted";
         header('Location: admin');

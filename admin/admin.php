@@ -92,7 +92,8 @@ include('../elements/status.php');
                                         </a></td>
                                             <td>
                                                 <form action="<?= $router->generate('delete')?>" method="post">
-                                                    <button type="submit" name="delete_contact" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">
+                                                    <input type="hidden" value="<?= $key?>" name="id_delete_agent">
+                                                    <button type="submit" name="delete_contact"  class="btn btn-outline-danger btn-sm my-0">
                                                 <img src="/assets/bin.png" alt="">
                                                 </button>
                                                 </form>
