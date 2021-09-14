@@ -1,0 +1,23 @@
+[
+  {
+    "name": "waiting for paiement"
+  },
+  {
+    "name": "approved"
+  },
+  {
+    "name": "refused"
+  },
+  {
+    "name": "in progress"
+  },
+  {
+    "name": "Cancel"
+  },
+  {
+    "name": "Successfull"
+  },
+  {
+    "name": "failed"
+  }
+]
