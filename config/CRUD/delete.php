@@ -19,7 +19,12 @@ if(isset($_POST['delete'])){
         header('Location: admin');
     }
 
-    $ref_table_agent = "agent".$del_id;
+   
+}
+elseif (isset($_POST['delete_contact'])) {
+    $del_id = $_POST['delete_contact'];
+    $ref_table_agent = "agent/".$del_id;
+
     $deleteQueryContact = $database->getReference($ref_table)->remove();
 
     if($deleteQueryContact){
@@ -31,6 +36,5 @@ if(isset($_POST['delete'])){
         header('Location: admin');
     }
 }
-
 
 ?>

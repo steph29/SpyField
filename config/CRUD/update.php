@@ -2,7 +2,7 @@
 session_start();
 include('../config/dbconfig.php') ;
 
-if(isset($_POST['update_contact'])){
+if(isset($_POST['update_mission'])){
 
 $key = $_POST['key'];
 $mission = $_POST['mission'];
@@ -15,9 +15,11 @@ $hideouts= $_POST['hideouts'];
 $specialities= $_POST['specialities'];
 $startDate= $_POST['startDate'];
 $endDate= $_POST['endDate'];
-$country = $_POST['country'];
+$country_key = $_POST['country'];
 $target = $_POST['target'];
 $agent = $_POST['agent'];
+
+
 
 $postData = [
     'mission' => $mission,
@@ -30,7 +32,7 @@ $postData = [
     'specialities' => $specialities,
     'startDate' => $startDate,
     'endDate' => $endDate,
-    'country' => $country,
+    'countryId' => $country_key,
     'target' => $target,
     'agent' => $agent,
     

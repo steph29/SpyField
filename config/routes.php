@@ -23,7 +23,6 @@ $router->map('GET', '/contact', 'templates/contact', 'contact');
 $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
 $router-> map('GET|POST', '/add', 'admin/add', 'add' );
-$router-> map('GET|POST', '/add_agent', 'admin/add_agent', 'add_agent');
 $router-> map('GET', '/mission', 'admin/mission', 'mission');
 $router-> map('GET|POST', '/status', 'elements/status', 'status');
 
@@ -33,3 +32,4 @@ $router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
 $router-> map('GET|POST', '/create', 'config/CRUD/create', 'create');
 $router-> map('GET|POST', '/delete', 'config/CRUD/delete', 'delete');
 $router-> map('GET|POST', '/update', 'config/CRUD/update', 'update');
+$router-> map('GET|POST', '/updateAgent', 'config/CRUD/updateAgent', 'updateAgent');

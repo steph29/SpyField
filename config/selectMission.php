@@ -34,7 +34,7 @@ if (isset($_POST['mission'])) {
     }
     }
     
-    $ref_type = "type/";
+    $ref_type = "types/";
     $getTypeData = $database->getReference($ref_type)->getValue();
     if($getTypeData > 0){
        foreach ($getTypeData as $key => $value) {

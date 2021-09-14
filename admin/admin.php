@@ -86,12 +86,13 @@ include('../elements/status.php');
                                             <?php 
                                             if(isset($_SESSION[ 'verified_user_id'])): 
                                             ?>
-                                            <td> <a href="/add?id=<?= $key ;?>" class="btn btn-outline-success btn-sm ">
+                                            <!-- faire un bouton update -->
+                                            <td> <a href="/updateAgent?id=<?= $key ;?>" class="btn btn-outline-success btn-sm " name="update_agent">
                                             <img src="/assets/write.png" alt="">
                                         </a></td>
                                             <td>
                                                 <form action="<?= $router->generate('delete')?>" method="post">
-                                                    <button type="submit" name="delete" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">
+                                                    <button type="submit" name="delete_contact" value="<?= $key?>" class="btn btn-outline-danger btn-sm my-0">
                                                 <img src="/assets/bin.png" alt="">
                                                 </button>
                                                 </form>
@@ -252,7 +253,7 @@ include('../elements/status.php');
         <option >Select your Type of mission</option>
          
           <?php include("../config/dbconfig.php");
-    $ref_table = 'type/';
+    $ref_table = 'types/';
     $fetchData = $database->getReference($ref_table)->getValue();
 
     if ($fetchData > 0) {
