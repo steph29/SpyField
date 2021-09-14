@@ -21,8 +21,8 @@ include("../config/dbconfig.php");
 if(isset($_GET['id'])){
     $key_child = $_GET['id'];
 
-    $ref_table = 'missions/';
-    $getData = $database->getReference($ref_table)->getChild($key_child)->getValue();
+    $ref = 'missions/';
+    $getData = $database->getReference($ref)->getChild($key_child)->getValue();
 
     if($getData > 0) {
         ?>
@@ -36,9 +36,10 @@ if(isset($_GET['id'])){
         <div class="row">
             <!-- first col -->
             <div class="col">
+                <input type="hidden" name= "id" value="<?= $key_child ?>">
         <div class="form-group my-3">
           <label class="col-form-label">Mission Title</label>
-          <input type="text" class="form-control" name="mission"/>
+          <input type="text" class="form-control" name="mission" value="<?= $getData['mission']?>"/>
         </div>
         <div class="form-group my-3">
           <label class="col-form-label">Country</label>
@@ -62,7 +63,7 @@ if(isset($_GET['id'])){
     </div>
         <div class="form-group my-3">
             <label class="col-form-label">Code Name</label>
-            <input type="text" class="form-control" name="codeName"/>
+            <input type="text" class="form-control" name="codeName" value="<?= $getData['codeName']?>"/>
         </div>
          <div class="form-group my-3">
             <label class="col-form-label">Target </label>
@@ -120,7 +121,7 @@ if(isset($_GET['id'])){
        
     <div class="form-group my-3">
           <label class="col-form-label">Description </label>
-    <textarea type="text" cols="10" rows="5" name="desc"></textarea>
+    <textarea type="text" cols="10" rows="5" name="desc" value="<?= $getData['desc']?>"></textarea>
         </div>
     
 </div> 

@@ -45,7 +45,7 @@ session_start();
 </div>
 <div class="form-group mb-3">
 <label for="">Nationality</label>
-<select name="nationality" id="nationality" class="form-control text-center linked-select">
+<select name="nationalityId" id="nationality" class="form-control text-center linked-select">
         <option >Select the country</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'countries/';
@@ -65,7 +65,7 @@ session_start();
 </div>
 <div class="form-group mb-3">
 <label for="">Speciality</label>
-<select name="speciality" id="speciality" class="form-control text-center linked-select">
+<select name="specialities[]" id="speciality" class="form-control text-center linked-select">
         <option >Select the Specialities</option>
      <?php include("../config/dbconfig.php");
     $ref_table = 'specialities/';
@@ -82,6 +82,9 @@ session_start();
     }
      ?>
                 </select>
+                <div >
+    <a class="btn rounded-circle btn-outline-success d-flex circle float-end" id="addSelectContact" >+</a>
+</div>
 </div>
 <div class="form-group mb-3">
 <button type="submit" name="add_agent" class="btn btn-outline-success">Add </button>

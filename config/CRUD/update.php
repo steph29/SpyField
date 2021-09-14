@@ -4,7 +4,7 @@ include('../config/dbconfig.php') ;
 
 if(isset($_POST['update_mission'])){
 
-$key = $_POST['key'];
+$key = $_POST['id'];
 $mission = $_POST['mission'];
 $codeName = $_POST['codeName'];
 $desc = $_POST['desc'];

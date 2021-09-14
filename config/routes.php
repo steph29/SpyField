@@ -29,7 +29,7 @@ $router-> map('GET|POST', '/status', 'elements/status', 'status');
 $router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
 
 // CRUD
-$router-> map('GET|POST', '/create', 'config/CRUD/create', 'create');
+$router-> map('GET|POST', '/edit', 'config/CRUD/edit', 'edit');
 $router-> map('GET|POST', '/delete', 'config/CRUD/delete', 'delete');
 $router-> map('GET|POST', '/update', 'config/CRUD/update', 'update');
 $router-> map('GET|POST', '/updateAgent', 'config/CRUD/updateAgent', 'updateAgent');

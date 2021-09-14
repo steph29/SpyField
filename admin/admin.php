@@ -30,7 +30,7 @@ include('../elements/status.php');
                                             <?php 
                                             if(isset($_SESSION[ 'verified_user_id'])): 
                                             ?>
-                                            <td> <a href="/create?id=<?= $key ;?>" class="btn btn-outline-success btn-sm ">
+                                            <td> <a href="/edit?id=<?= $key ;?>" class="btn btn-outline-success btn-sm ">
                                             <img src="/assets/write.png" alt="">
                                         </a></td>
                                             <td>
