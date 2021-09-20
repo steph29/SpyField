@@ -1,4 +1,4 @@
-<Directory /var/www/public/>
+<Directory /www/spyfield>
     Options Indexes FollowSymLinks
     Require all granted
     AllowOverride All
