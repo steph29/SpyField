@@ -1,6 +1,6 @@
 <?php 
 session_start() ;
-include('dbconfig.php');
+include(__DIR__.'/dbconfig.php');
 
 if(isset($_POST['loginBtn'])){
 
