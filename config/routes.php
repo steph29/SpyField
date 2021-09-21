@@ -18,7 +18,7 @@ $router-> map('GET|POST', '/targetList', 'config/targetList', 'targetList' );
 // Router image
 
 // Router website
-$router->map('GET', '/', 'templates/home', 'home');
+$router->map('GET', '/home', 'templates/home', 'home');
 $router->map('GET', '/contact', 'templates/contact', 'contact');
 $router->map('GET|POST', '/login', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
