@@ -1,6 +1,7 @@
 <?php 
 require '../vendor/autoload.php';
 
+define('BASE_URL', dirname($_SERVER["DOCUMENT_ROOT"]));
 $page = $_GET['page'] ?? '404';
 $router = new AltoRouter();
 
