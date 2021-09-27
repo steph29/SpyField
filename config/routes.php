@@ -20,13 +20,13 @@ $router-> map('GET|POST', '/targetList', 'config/targetList', 'targetList' );
 // Router website
 $router->map('GET', '/home', 'templates/home', 'home');
 $router->map('GET', '/contact', 'templates/contact', 'contact');
-$router->map('GET|POST', '/', 'admin/login', 'login');
-$router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
-$router-> map('GET|POST', '/add', 'admin/add', 'add' );
-$router-> map('GET', '/mission', 'admin/mission', 'mission');
+$router->map('GET|POST', '/', 'templates/login', 'login');
+$router-> map('GET|POST', '/admin', 'templates/admin', 'admin' );
+$router-> map('GET|POST', '/add', 'templates/add', 'add' );
+$router-> map('GET', '/mission', 'templates/mission', 'mission');
 $router-> map('GET|POST', '/status', 'elements/status', 'status');
 
-$router-> map('GET|POST', '/register', 'admin/register', 'registerPage' );
+$router-> map('GET|POST', '/register', 'templates/register', 'registerPage' );
 
 // crud
 $router-> map('GET|POST', '/edit', 'config/crud/edit', 'edit');
