@@ -20,7 +20,7 @@ $router-> map('GET|POST', '/targetList', 'config/targetList', 'targetList' );
 // Router website
 $router->map('GET', '/home', 'templates/home', 'home');
 $router->map('GET', '/contact', 'templates/contact', 'contact');
-$router->map('GET|POST', '/login', 'admin/login', 'login');
+$router->map('GET|POST', '/', 'admin/login', 'login');
 $router-> map('GET|POST', '/admin', 'admin/admin', 'admin' );
 $router-> map('GET|POST', '/add', 'admin/add', 'add' );
 $router-> map('GET', '/mission', 'admin/mission', 'mission');
