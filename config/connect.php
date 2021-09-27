@@ -1,5 +1,6 @@
 <?php 
 session_start() ;
+var_dump("je suis dans le connect");
 include(__DIR__.'/dbconfig.php');
 
 if(isset($_POST['loginBtn'])){
