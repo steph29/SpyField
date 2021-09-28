@@ -1,13 +1,14 @@
 <?php 
 require '../vendor/autoload.php';
 
+var_dump("je suis dans l'index");
 define('BASE_URL', dirname($_SERVER["DOCUMENT_ROOT"]));
 $page = $_GET['page'] ?? '404';
 $router = new AltoRouter();
-
+var_dump("je créé une instance de alotrouter");
 $racine = dirname($_SERVER["DOCUMENT_ROOT"]);
 require $racine.'/config/routes.php';
-
+var_dump("Je suis sorti de config/routes");
 $match = $router->match();
 
 if(is_array($match)) {
