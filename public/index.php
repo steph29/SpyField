@@ -5,7 +5,8 @@ define('BASE_URL', dirname($_SERVER["DOCUMENT_ROOT"]));
 $page = $_GET['page'] ?? '404';
 $router = new AltoRouter();
 
-require '../config/routes.php';
+$racine = dirname($_SERVER["DOCUMENT_ROOT"]);
+require $racine.'/config/routes.php';
 
 $match = $router->match();
 
