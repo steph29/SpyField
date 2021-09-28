@@ -1,7 +1,9 @@
 <?php 
 session_start() ;
+var_dump("je suis dans le connect");
 include(__DIR__.'/dbconfig.php');
-var_dump("J'ai passé le dbconfig");
+var_dump("j\'ai passé le dbconfig");
+
 if(isset($_POST['loginBtn'])){
 
     $email = $_POST['email'];
