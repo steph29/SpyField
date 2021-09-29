@@ -1,6 +1,6 @@
 build:
   docker:
-    web: Dockerfile
+    web: phpdocker/php-fpm/DockerfileDockerfile
     worker: phpdocker/php-fpm/Dockerfile
 run:
   web: bundle exec puma -C config/puma.rb
