@@ -2,7 +2,7 @@
 var mission = document.getElementById("missionType");
 var lat = 0;
 var lon = 0;
-var name = "";
+let name = "";
 
 function readMission(variable) {
   $.post(

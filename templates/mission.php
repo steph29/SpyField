@@ -34,14 +34,14 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Autho
                         </select>
                 </div>
         </div>
-        <div class="col-md-6 my-3">
-            <section class="missionSection">
+        <!-- <div class="col-md-6 my-3">
+            <section class="missionSection"> -->
                 <!-- Visualisation de la carte -->
-                 <div id="mapid"></div>
+                 <!-- <div id="mapid"></div>
              </section>
-        </div>
+        </div> -->
         
-        <div class="col-md-6 my-3">
+        <div class="col my-3">
             <section class="missionSection">
                 <div class="card-body">
                     <!-- Tableau récap de la mission -->

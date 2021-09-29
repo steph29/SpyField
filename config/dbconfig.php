@@ -1,7 +1,7 @@
 <?php 
-var_dump("je suis dans le dbconfig");
+
 require '../vendor/autoload.php';
-var_dump("j'ai passé le vendor'");
+
 
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Auth;
