@@ -21,14 +21,12 @@ if(is_array($match)) {
         $pageContent = ob_get_clean();
     }
     require '../elements/layout.php';
-
 } else {
     ob_start();
     require '../errors/404.php';
     $pageContent = ob_get_clean();
     require '../elements/layout.php';
 }
-
 ?>
 
 
